@@ -1,0 +1,167 @@
+#!/usr/bin/bash
+
+# Reset
+NC='\033[0m'       # Text Reset
+
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+function command_exists() {
+    type "$1" &> /dev/null ;
+}
+
+function link_config() {
+    config_name="$1"
+    config_location="$2"
+    config_local_location="$3"
+
+    do_link_config=false
+
+    if [ -e $config_location ] ; then
+        if [ -L $config_location ] ; then
+            echo -e "${Green}${config_name} config exists${NC}"
+        else
+            echo -e "${Yellow}${config_name} config exists, but is not linked to dotfiles.${NC}"
+
+            read -e -p "Delete existing ${config_name} config? (y/n): "  ANS
+            
+            if [ "${ANS}" = "y" ] ; then
+                echo -e "Deleting existing config ${config_location}..."
+                rm -rf $config_location
+                do_link_config=true
+            else
+                echo "Operation canceled."
+                exit 0
+            fi
+        fi
+    else
+        do_link_config=true
+    fi
+
+    if [ "${do_link_config}" = true ]; then
+        ln -s ${config_local_location} $config_location
+
+        if [ -L $kitty_dir ]; then 
+            echo -e "${Cyan}${config_name} config linked to ${config_location}${NC}"
+        else
+            echo -e "${Red}An error occured linking config files.{$NC}"
+            exit 1
+        fi
+    fi
+}
+
+config_ok=true
+
+# ============== Check installation of required programs ====== #
+
+echo -e "${BBlue} >>> Checking for programs:${NC}"
+echo
+
+### Kitty 
+if command_exists kitty; then
+    echo -e "${Green}Kitty found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Kitty is not installed. Execute the following command to install kitty:\n${NC}curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+    echo
+fi
+                                                               
+### nvim
+if command_exists nvim ; then
+    echo -e "${Green}Nvim found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Nvim not found. Follow the instructions below to install neovim:\n${NC}https://neovim.io/"
+    echo
+fi
+
+### Ripgrep
+if command_exists rg; then
+    echo -e "${Green}Ripgrep found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Ripgrep not found. Execute the following command to install ripgrep:\n${NC}sudo apt-get install ripgrep"
+    echo
+fi
+                                                               
+### Lazygit 
+if command_exists lazygit; then
+    echo -e "${Green}Lazygit found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Lazygit not found. Execute the following command to install lazygit:\n${NC}curl -sS https://starship.rs/install.sh | sh"
+    echo
+fi
+                                                               
+### Zsh
+if command_exists zsh; then
+    echo -e "${Green}Zsh found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Zsh not installed. Execute the following command to install zsh:\n${NC}sudo apt-get install zsh"
+    echo -e "${Yellow}Enable zsh with the following command:${NC}"
+    echo "chsh -s $(which zsh)"
+    echo
+fi
+                                                               
+### OhMyZsh 
+if [ ! -d "${HOME}/.ohmyzsh" ]; then
+    echo -e "${Green}ohmyzsh found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}ohmyzsh not found. Execute the following command to install ohmyzsh:\n${NC}"
+    echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+    echo
+fi
+                                                               
+### Starship 
+if command_exists lazygit; then
+    echo -e "${Green}Starship found${NC}"
+else
+    config_ok=false
+    echo -e "${Yellow}Starship not found. Execute the following command to install starship:\n${NC}"
+    echo "curl -sS https://starship.rs/install.sh | sh"
+    echo
+fi
+                                                               
+# ============== Symlink config files ========================= #
+echo
+echo -e "${BBlue} >>> Installing configs:${NC}"
+echo
+
+### Kitty
+link_config "Kitty" "${HOME}/.config/kitty" "${PWD}/kitty"
+
+### Nvim
+link_config "Nvim" "${HOME}/.config/nvim" "${PWD}/nvim"
+
+### Starship
+link_config "Starship" "${HOME}/.config/starship.toml" "${PWD}/starship/tokyonight.toml"
+
+### TMUX
+link_config "TMUX" "${HOME}/.tmux.conf" "${PWD}/tmux/.tmux.conf"
+
+if [ "${config_ok}" = true ]; then
+    echo
+    echo -e "Config ${BGreen}successfully${NC} installed${NC}"
+else
+    echo
+    echo -e "${BYellow}Config incomplete${NC}"
+fi

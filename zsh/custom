@@ -1,0 +1,63 @@
+#!/usr/bin/bash
+
+### Alias vim to nvim
+alias vim='nvim'
+
+### Alias nordvpn
+alias nord='nordvpn'
+
+### Standard aliases
+alias brc='nvim ~/.aliases'
+alias reload='source ~/.aliases'
+alias lsa='ls -lha'
+alias cl='clear'
+alias vsc='code -n .'
+
+function mkcd () {
+  dir=$1
+  mkdir $dir
+  cd $dir
+}
+
+### Kitty alias
+export PATH=$PATH:~/.local/kitty.app/bin
+
+### Add local bin to path
+export PATH=$PATH:~/.local/bin
+
+### Add go to path
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+
+### Docker
+alias di='docker images'
+alias dps='docker ps'
+alias drun='docker run --rm -it'
+
+### Nvim
+alias nvimconf='nvim ~/.config/nvim'
+alias vim='nvim'
+
+### Git
+# Fixes git loose objects
+function fix_git() {
+    find .git/objects/ -size 0 -exec rm -f {}
+    git fetch origin
+}
+
+### Source starship
+if [ -x "$(command -v starship)" ]; then
+    eval "$(starship init zsh)"
+fi
+
+### For wsl2 - using linux git status on windows repos is criplingly slow
+### Using windows native git fixes that problem
+if [ -d /mnt/c ]; then
+    function git() {
+      if $(pwd -P | grep -q "^\/mnt\/c\/*"); then
+        git.exe "$@"
+      else
+        command git "$@"
+      fi
+    }
+fi
