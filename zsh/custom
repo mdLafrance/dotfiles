@@ -45,6 +45,9 @@ function fix_git() {
     git fetch origin
 }
 
+### Ranger
+alias r='ranger'
+
 ### Source starship
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
