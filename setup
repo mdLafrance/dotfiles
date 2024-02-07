@@ -106,7 +106,8 @@ if command_exists lazygit; then
     echo -e "${Green}Lazygit found${NC}"
 else
     config_ok=false
-    echo -e "${Yellow}Lazygit not found. Execute the following command to install lazygit:\n${NC}curl -sS https://starship.rs/install.sh | sh"
+    echo -e "${Yellow}Lazygit not found. Follow the installation instructions here:${NC}"
+    echo "https://github.com/jesseduffield/lazygit"
     echo
 fi
                                                                
@@ -132,7 +133,7 @@ else
 fi
                                                                
 ### Starship 
-if command_exists lazygit; then
+if command_exists starship; then
     echo -e "${Green}Starship found${NC}"
 else
     config_ok=false
