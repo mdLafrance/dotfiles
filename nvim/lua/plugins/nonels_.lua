@@ -15,7 +15,9 @@ return {
 				null_ls.builtins.formatting.cmake_format,
 				null_ls.builtins.formatting.fixjson,
 				null_ls.builtins.formatting.rustfmt,
-				null_ls.builtins.formatting.rustywind, -- tailwind formatter
+				null_ls.builtins.formatting.eslint_d, -- Javscript
+				-- null_ls.builtins.formatting.rustywind, -- tailwind formatter
+
 			},
 		})
 
