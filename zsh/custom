@@ -41,7 +41,7 @@ alias vim='nvim'
 ### Git
 # Fixes git loose objects
 function fix_git() {
-    find .git/objects/ -size 0 -exec rm -f {}
+    find .git/objects/ -size 0 -exec rm -f {} \;
     git fetch origin
 }
 
