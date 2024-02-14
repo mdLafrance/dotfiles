@@ -12,6 +12,7 @@ alias reload='source ~/.aliases'
 alias lsa='ls -lha'
 alias cl='clear'
 alias vsc='code -n .'
+alias sysinfo='inxi -Fxxxrz'
 
 function mkcd () {
   dir=$1
