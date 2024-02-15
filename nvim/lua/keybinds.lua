@@ -37,3 +37,6 @@ vim.keymap.set("n", "<leader>m", ":Mason<CR>", {})
 
 -- Open error messages
 vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
+
+-- Comment/uncomment selected lines
+-- 'gc' in visual select mode
