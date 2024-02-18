@@ -14,6 +14,8 @@ alias cl='clear'
 alias vsc='code -n .'
 alias sysinfo='inxi -Fxxxrz'
 
+alias tl='tree -L $1'
+
 function mkcd () {
   dir=$1
   mkdir $dir
