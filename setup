@@ -58,7 +58,7 @@ function link_config() {
     if [ "${do_link_config}" = true ]; then
         ln -s ${config_local_location} $config_location
 
-        if [ -L $kitty_dir ]; then 
+        if [ -L $config_location ]; then 
             echo -e "${Cyan}${config_name} config linked to ${config_location}${NC}"
         else
             echo -e "${Red}An error occured linking config files.{$NC}"
@@ -74,12 +74,13 @@ config_ok=true
 echo -e "${BBlue} >>> Checking for programs:${NC}"
 echo
 
-### Kitty 
-if command_exists kitty; then
-    echo -e "${Green}Kitty found${NC}"
+### Wezterm 
+if command_exists wezterm; then
+    echo -e "${Green}Wezterm found${NC}"
 else
     config_ok=false
-    echo -e "${Yellow}Kitty is not installed. Execute the following command to install kitty:\n${NC}curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+    echo -e "${Yellow}Wezterm is not installed. Follow the instructions below to install:\n${NC}"
+    echo "https://wezfurlong.org/wezterm/installation.html"
     echo
 fi
                                                                
@@ -147,8 +148,8 @@ echo
 echo -e "${BBlue} >>> Installing configs:${NC}"
 echo
 
-### Kitty
-link_config "Kitty" "${HOME}/.config/kitty" "${PWD}/kitty"
+### Wezterm
+link_config "Wezterm" "${HOME}/.wezterm.lua" "${PWD}/wezterm/.wezterm.lua"
 
 ### Nvim
 link_config "Nvim" "${HOME}/.config/nvim" "${PWD}/nvim"
