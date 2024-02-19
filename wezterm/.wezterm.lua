@@ -10,10 +10,10 @@ config.color_scheme = 'Catppuccin Mocha'
 
 -- Padding
 config.window_padding = {
-    left = 15,
-    right = 15,
-    top = 15,
-    bottom = 15
+    left = 10,
+    right = 10,
+    top = 10,
+    bottom = 10
 }
 
 -- Background opacity
