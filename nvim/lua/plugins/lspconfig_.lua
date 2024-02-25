@@ -24,6 +24,7 @@ return {
                     "marksman", -- markdown
                     "powershell_es",
                     "pyright", -- python
+                    "jedi_language_server", -- python
                     "rust_analyzer",
                     "tsserver",
                     "tailwindcss",
@@ -78,6 +79,12 @@ return {
             lspconfig.taplo.setup({
                 capabilities = capabilities,
             })
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
+            })
+            -- lspconfig.jedi_language_server.setup({
+            --     capabilities = capabilities,
+            -- })
 
             vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})

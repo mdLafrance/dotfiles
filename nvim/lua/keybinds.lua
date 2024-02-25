@@ -28,6 +28,9 @@ vim.keymap.set("n", "<leader>md", ":MarkdownPreview<CR>", {})
 
 -- Lint
 vim.keymap.set("n", "<leader>l", vim.lsp.buf.format, {})
+-- Enable format on save using LSP
+vim.cmd([[autocmd BufWritePre *.cpp,*.h lua vim.lsp.buf.format()]])
+
 
 -- Open theme select
 vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", {})
