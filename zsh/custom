@@ -16,6 +16,8 @@ alias sysinfo='inxi -Fxxxrz'
 
 alias tl='tree -L $1'
 
+alias search='find / -name $1 2>/dev/null'
+
 function mkcd () {
   dir=$1
   mkdir $dir
@@ -35,7 +37,7 @@ export PATH=$PATH:~/go/bin
 ### Docker
 alias di='docker images'
 alias dps='docker ps'
-alias drun='docker run --rm -it'
+alias drun="docker run -it $(docker build -q .)"
 
 ### Nvim
 alias nvimconf='nvim ~/.config/nvim'

@@ -15,7 +15,7 @@ return {
                     "lua_ls",
                     "clangd", --c, c++
                     "cmake",
-                    "cssls",
+                    "cssls", 
                     "bashls",
                     "dockerls",
                     "docker_compose_language_service",
@@ -44,6 +44,9 @@ return {
             local lspconfig = require("lspconfig")
 
             lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.cssls.setup({
                 capabilities = capabilities,
             })
             lspconfig.clangd.setup({
@@ -80,6 +83,12 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.pyright.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.dockerls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.docker_compose_language_service.setup({
                 capabilities = capabilities,
             })
             -- lspconfig.jedi_language_server.setup({
