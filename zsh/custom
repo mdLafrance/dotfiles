@@ -8,6 +8,7 @@ alias nord='nordvpn'
 
 ### Standard aliases
 alias v='nvim .'
+alias n='nvim .'
 alias brc='nvim ~/.aliases'
 alias reload='source ~/.aliases'
 alias lsa='ls -lha'
@@ -38,7 +39,7 @@ export PATH=$PATH:~/go/bin
 ### Docker
 alias di='docker images'
 alias dps='docker ps'
-alias drun="docker run -it $(docker build -q .)"
+# alias drun='docker run -it $(docker build -q .)'
 
 ### Nvim
 alias nvimconf='nvim ~/.config/nvim'
