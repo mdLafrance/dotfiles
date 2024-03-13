@@ -7,6 +7,7 @@ alias vim='nvim'
 alias nord='nordvpn'
 
 ### Standard aliases
+alias ge='grepenv'
 alias v='nvim .'
 alias n='nvim .'
 alias brc='nvim ~/.aliases'

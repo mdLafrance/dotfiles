@@ -160,6 +160,10 @@ link_config "Starship" "${HOME}/.config/starship.toml" "${PWD}/starship/blue.tom
 ### TMUX
 link_config "TMUX" "${HOME}/.tmux.conf" "${PWD}/tmux/.tmux.conf"
 
+### TMUX
+link_config "bash aliases" "${HOME}/.aliases" "${PWD}/zsh/.aliases"
+link_config "zshrc" "${HOME}/.zshrc" "${PWD}/zsh/.zshrc"
+
 if [ "${config_ok}" = true ]; then
     echo
     echo -e "Config ${BGreen}successfully${NC} installed${NC}"
