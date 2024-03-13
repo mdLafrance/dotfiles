@@ -155,7 +155,7 @@ link_config "Wezterm" "${HOME}/.wezterm.lua" "${PWD}/wezterm/.wezterm.lua"
 link_config "Nvim" "${HOME}/.config/nvim" "${PWD}/nvim"
 
 ### Starship
-link_config "Starship" "${HOME}/.config/starship.toml" "${PWD}/starship/tokyonight.toml"
+link_config "Starship" "${HOME}/.config/starship.toml" "${PWD}/starship/blue.toml"
 
 ### TMUX
 link_config "TMUX" "${HOME}/.tmux.conf" "${PWD}/tmux/.tmux.conf"
