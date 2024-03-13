@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+
+source $PWD/colors
+
+echo
+echo -e "Installing ${BBlue} ZSH Plugins${NC}"
+
+ZSH_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+
+# Download zsh completions plugin
+ZSH_AUTOSUGGEST_PATH=${ZSH_PATH}/plugins/zsh-autosuggestions
+
+if ! [ -d $ZSH_AUTOSUGGEST_PATH ]; then
+    echo -e "Installing {BBlue}ZSH Autosuggestions${NC}"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_AUTOSUGGEST_PATH}
+else
+    echo -e "Autosuggestions ${BGreen}already installed${NC}"
+fi
+
+# Download syntax highlighting plugin
+HIGHLIGHTING_PATH=${ZSH_PATH}/plugins/zsh-syntax-highlighting
+
+if ! [ -d $HIGHLIGHTING_PATH ]; then
+    echo -e "Installing {BBlue}ZSH Syntax Highlighting${NC}"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${HIGHLIGHTING_PATH}
+else
+    echo -e "Syntax highlighting ${BGreen}already installed${NC}"
+fi
+
+
