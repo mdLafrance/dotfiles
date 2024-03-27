@@ -17,6 +17,7 @@ alias lsa='ls -lha'
 alias cl='clear'
 alias vsc='code -n .'
 alias sysinfo='inxi -Fxxxrz'
+alias l='lazygit'
 
 alias tl='tree -L $1'
 
