@@ -15,23 +15,24 @@ return {
                     "lua_ls",
                     "clangd", --c, c++
                     "cmake",
-                    "cssls", 
+                    "cssls",
                     "bashls",
                     "dockerls",
                     "docker_compose_language_service",
                     "gopls",
-                    "jdtls", -- java
-                    "marksman", -- markdown
+                    "jdtls",                -- java
+                    "marksman",             -- markdown
                     "powershell_es",
-                    "pyright", -- python
+                    "pyright",              -- python
                     "jedi_language_server", -- python
                     "rust_analyzer",
                     "tsserver",
                     "tailwindcss",
                     "hydra_lsp", -- yaml
-                    "eslint", -- Javascript formatting
+                    "eslint",    -- Javascript formatting
                     "jsonls",
-                    "taplo", -- toml
+                    "taplo",     -- toml
+                    "asm_lsp",   -- assembly (nasm)
                 },
             })
         end,
@@ -94,6 +95,10 @@ return {
             -- lspconfig.jedi_language_server.setup({
             --     capabilities = capabilities,
             -- })
+            lspconfig.asm_lsp.setup({
+                capabilities = capabilities,
+                command = "asdf"
+            })
 
             vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})
