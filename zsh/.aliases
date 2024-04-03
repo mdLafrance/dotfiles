@@ -18,10 +18,10 @@ alias cl='clear'
 alias vsc='code -n .'
 alias sysinfo='inxi -Fxxxrz'
 alias l='lazygit'
-
 alias tl='tree -L $1'
-
 alias search='find / -name $1 2>/dev/null'
+
+# NOTE: ncdu is the disk usage util you are looking for
 
 function mkcd () {
   dir=$1
