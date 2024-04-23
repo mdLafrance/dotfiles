@@ -6,7 +6,7 @@ local config = {}
 config.font = wezterm.font 'JetBrains Mono'
 
 -- Colorscheme
-config.color_scheme = 'Catppuccin Mocha'
+-- config.color_scheme = 'Catppuccin Mocha'
 
 -- Padding
 config.window_padding = {
@@ -17,7 +17,7 @@ config.window_padding = {
 }
 
 -- Background opacity
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.80
 
 -- Tab management
 config.hide_tab_bar_if_only_one_tab = true
