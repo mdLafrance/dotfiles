@@ -76,3 +76,8 @@ if [ -d /mnt/c ]; then
       fi
     }
 fi
+
+### On wayland - text looks bad using qt apps
+if command -v qutebrowser &> /dev/null; then
+    export QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor
+fi
