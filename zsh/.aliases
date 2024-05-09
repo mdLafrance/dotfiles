@@ -21,6 +21,7 @@ alias l='lazygit'
 alias tl='tree -L $1'
 alias search='find / -name $1 2>/dev/null'
 alias searchproc='ps aux | grep $1'
+alias internet='nmtui'
 
 # NOTE: ncdu is the disk usage util you are looking for
 

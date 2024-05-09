@@ -126,7 +126,7 @@
         // "format-linked": "{ifname} (No IP) ",
         // "format-disconnected": "󰀦", //Disconnected ⚠
         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "interval": 30,
+        "interval": 5,
         "format-wifi": "{essid} {icon}",
         "tooltip-format-wifi": "{ipaddr} ({signalStrength}%) ",
         "format-disconnected": "Disconnected 󰀦", //Disconnected ⚠
