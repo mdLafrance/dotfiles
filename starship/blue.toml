@@ -28,6 +28,10 @@ success_symbol = '[❯](bold #769ff0)'
 style = "bg:#b7cce8 fg:#090c0c"
 disabled = false # Disabled by default
 
+[os.symbols]
+Arch = "󰣇 "
+Mint = "󰣭 "
+
 [username]
 show_always = true
 style_user = "bg:#b7cce8 fg:#090c0c"

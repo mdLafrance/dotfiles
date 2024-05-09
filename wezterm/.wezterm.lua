@@ -17,9 +17,12 @@ config.window_padding = {
 }
 
 -- Background opacity
-config.window_background_opacity = 0.70
+config.window_background_opacity = 0.80
 
 -- Tab management
 config.hide_tab_bar_if_only_one_tab = true
+
+-- Temporary fix to work on wayland
+config.enable_wayland = false
 
 return config

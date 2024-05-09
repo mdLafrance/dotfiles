@@ -128,7 +128,19 @@ echo -e "${BBlue} >>> Installing configs:${NC}"
 echo
 
 ### Wezterm
-link_config "Wezterm" "${HOME}/.wezterm.lua" "${PWD}/wezterm/.wezterm.lua"
+if command_exists wezterm; then
+    link_config "Wezterm" "${HOME}/.wezterm.lua" "${PWD}/wezterm/.wezterm.lua"
+fi
+
+### Kitty
+if command_exists kitty; then
+    link_config "Kitty" "${HOME}/.config/kitty/kitty.conf" "${PWD}/kitty/kitty.conf"
+fi
+
+### hyprland
+if command_exists Hyprland; then
+    link_config "Hyprland" "${HOME}/.config/hypr/hyprland.conf" "${PWD}/hyprland/hyprland.conf"
+fi
 
 ### Nvim
 link_config "Nvim" "${HOME}/.config/nvim" "${PWD}/nvim"

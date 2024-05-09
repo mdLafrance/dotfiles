@@ -32,7 +32,6 @@ return {
                     "eslint",    -- Javascript formatting
                     "jsonls",
                     "taplo",     -- toml
-                    "asm_lsp",   -- assembly (nasm)
                 },
             })
         end,
@@ -91,13 +90,6 @@ return {
             })
             lspconfig.docker_compose_language_service.setup({
                 capabilities = capabilities,
-            })
-            -- lspconfig.jedi_language_server.setup({
-            --     capabilities = capabilities,
-            -- })
-            lspconfig.asm_lsp.setup({
-                capabilities = capabilities,
-                command = "asdf"
             })
 
             vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
