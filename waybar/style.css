@@ -25,6 +25,14 @@ window#waybar.empty {
     opacity: 0.3;
 }
 
+.modules-left {
+    padding-left: 4px;
+}
+
+.modules-right {
+    padding-right: 4px;
+}
+
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
