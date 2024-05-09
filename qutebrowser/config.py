@@ -35,6 +35,10 @@ config.bind("<Ctrl+7>", "tab-focus 7")
 config.bind("<Ctrl+8>", "tab-focus 8")
 config.bind("<Ctrl+9>", "tab-focus -1")
 
+c.url.start_pages = [
+        "https://google.com"
+        ]
+
 c.url.searchengines = {
     'DEFAULT':  'https://google.com/search?hl=en&q={}',
 }
