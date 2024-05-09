@@ -22,6 +22,9 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": "",
             "1": "",
             "2": "󰈹",
             // "2": "",
@@ -33,9 +36,6 @@
             // "9": "",
             // "10": ""
             // "","",
-            "urgent": "",
-            // "active": "",
-            "default": ""
          },
     },
     "keyboard-state": {
