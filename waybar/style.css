@@ -14,11 +14,11 @@
 
 window#waybar {
     color: @fg;
-    background: rgba(5, 10, 20, 0.6);
+    background: rgba(5, 10, 20, 0.05);
     transition-property: background-color;
     transition-duration: 0.5s;
     border: 1px solid @bordercolor;
-    border-radius: 24px;
+    border-radius: 12px;
 }
 
 window#waybar.empty {
