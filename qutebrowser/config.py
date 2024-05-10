@@ -20,10 +20,13 @@ config.set("zoom.default", "85%")
 config.set("tabs.position", "top")
 
 # Uncomment to user city lights
-# config.source('themes/qute-city-lights/city-lights-theme.py')
+config.source('themes/qute-city-lights/city-lights-theme.py')
 
 # Uncomment to use catpuccin
 # config.source('themes/catpuccin/setup.py')
+
+# config.source('themes/onedark.py')
+
 
 # Keybinds
 # NOTE: Uncomment this if horizontal tabs
