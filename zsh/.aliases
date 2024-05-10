@@ -41,6 +41,9 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
 
+### Add cargo bin to path
+export PATH=$PATH:~/.cargo/bin
+
 ### Docker
 alias di='docker images'
 alias dps='docker ps'
@@ -75,13 +78,4 @@ if [ -d /mnt/c ]; then
         command git "$@"
       fi
     }
-fi
-
-### On wayland - text looks bad using qt apps
-if command -v qutebrowser &> /dev/null; then
-    # export QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor
-    # export QT_QPA_PLATFORMTHEME=qt6ct
-    # export QT_SCALE_FACTOR=1.2
-    # export QT_QPA_PLATFORM=wayland
-    # export QUTE_QT_WRAPPER=PyQt6
 fi

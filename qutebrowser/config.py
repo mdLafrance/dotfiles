@@ -14,15 +14,19 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 config.set('content.local_content_can_access_remote_urls', True, 'file:///home/mdlafrance/.local/share/qutebrowser/userscripts/*')
 config.set('content.local_content_can_access_file_urls', False, 'file:///home/mdlafrance/.local/share/qutebrowser/userscripts/*')
+
+# Custom
 config.set("zoom.default", "85%")
+config.set("tabs.position", "top")
 
 # Uncomment to user city lights
 # config.source('themes/qute-city-lights/city-lights-theme.py')
 
 # Uncomment to use catpuccin
-config.source('themes/catpuccin/setup.py')
+# config.source('themes/catpuccin/setup.py')
 
 # Keybinds
+# NOTE: Uncomment this if horizontal tabs
 config.bind("<Shift+j>", "tab-prev")
 config.bind("<Shift+k>", "tab-next")
 

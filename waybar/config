@@ -12,7 +12,7 @@
     // Choose the order of the modules
     "modules-left": ["cpu", "memory", "temperature", "battery"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio", "network", "tray", "clock"],
+    "modules-right": ["backlight", "pulseaudio", "network", "tray", "clock"],
 
     // Modules configuration
     "hyprland/workspaces": {
