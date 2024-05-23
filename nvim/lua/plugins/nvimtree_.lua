@@ -18,6 +18,12 @@ return {
                 enable = true,
                 show_on_dirs = true,
             },
+            filters = {
+                dotfiles = false
+            },
+            git = {
+                ignore = false
+            }
         })
     end
 }
