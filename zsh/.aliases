@@ -23,6 +23,7 @@ alias search='find / -name $1 2>/dev/null'
 alias searchproc='ps aux | grep $1'
 alias internet='nmtui'
 alias lsg='ls -lha | grep $1'
+alias tf='terraform'
 
 # NOTE: ncdu is the disk usage util you are looking for
 

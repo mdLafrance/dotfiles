@@ -14,7 +14,7 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi 
 
-if [ -f ~/.aliases ]; then
+if [ -f ~/.secrets ]; then
     source ~/.secrets
 fi 
 

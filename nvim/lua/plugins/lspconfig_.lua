@@ -15,6 +15,7 @@ return {
                     "lua_ls",
                     "clangd", --c, c++
                     "cmake",
+                    -- "autotools_ls",
                     "cssls",
                     "bashls",
                     "dockerls",
@@ -32,6 +33,8 @@ return {
                     "eslint",    -- Javascript formatting
                     "jsonls",
                     "taplo",     -- toml
+                    "terraformls",
+                    "tflint"
                 },
             })
         end,
@@ -52,6 +55,12 @@ return {
             lspconfig.clangd.setup({
                 capabilities = capabilities,
             })
+            lspconfig.cmake.setup({
+                capabilities = capabilities,
+            })
+            -- lspconfig.autotools_ls.setup({
+            --     capabilities = capabilities,
+            -- })
             lspconfig.rust_analyzer.setup({
                 capabilities = capabilities,
                 ["rust_analyzer"] = {
@@ -89,6 +98,12 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.docker_compose_language_service.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.terraformls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.tflint.setup({
                 capabilities = capabilities,
             })
 

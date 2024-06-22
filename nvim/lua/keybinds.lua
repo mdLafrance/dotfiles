@@ -43,3 +43,6 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 
 -- Comment/uncomment selected lines
 -- 'gc' in visual select mode
+
+-- Open outliner
+vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})

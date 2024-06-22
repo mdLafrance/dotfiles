@@ -18,8 +18,6 @@ return {
                 },
             })
 
-            vim.keymap.set("n", "<leader>l", vim.lsp.buf.format, {})
-
             -- vim.api.nvim_create_autocmd("BufWritePre", {
             --     pattern = "*",
             --     callback = function(args)
