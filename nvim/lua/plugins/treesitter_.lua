@@ -12,7 +12,7 @@ return {
                 highlight = { enable = true, use_languagetree = true },
                 -- indent = { enable = true },
                 autotag = {
-                    enable = true,
+                    -- enable = true,
                 },
             })
         end,
