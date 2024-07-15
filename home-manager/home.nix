@@ -23,6 +23,8 @@
       mold
       gcc
       cmake
+      gnumake
+      ninja
       ripgrep
       lua
       cargo
@@ -32,6 +34,10 @@
       obsidian
       chromium
       neofetch
+      discord
+      spotify
+      pavucontrol
+      pamixer
     ];
 
   programs.zsh = {

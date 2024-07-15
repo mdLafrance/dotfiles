@@ -102,6 +102,12 @@
     wget
     lxqt.lxqt-openssh-askpass
     home-manager
+    wayland-scanner
+    pkg-config
+    wayland-utils
+    libxkbcommon
+    glfw-wayland
+    egl-wayland
   ];
 
   programs.zsh.enable = true;
