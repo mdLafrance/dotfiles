@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 {
   home = {
     stateVersion = "24.05";
@@ -31,7 +34,7 @@
       lazygit
       rofi-wayland
       terraform
-      obsidian
+      (unstable.obsidian.override { commandLineArgs = [ "--disable-gpu" ]; })
       chromium
       neofetch
       discord
