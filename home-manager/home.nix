@@ -38,6 +38,11 @@
       spotify
       pavucontrol
       pamixer
+      awscli2
+      rustc
+      rustfmt
+      rust-analyzer
+      unityhub
     ];
 
   programs.zsh = {
