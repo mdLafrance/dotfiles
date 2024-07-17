@@ -69,12 +69,17 @@
     pulseaudio = {
       enable = false;
     };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   virtualisation.docker.enable = true;
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -108,6 +113,7 @@
     libxkbcommon
     glfw-wayland
     egl-wayland
+    blueman
   ];
 
   programs.nix-ld.enable = true;
