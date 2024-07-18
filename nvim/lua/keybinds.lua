@@ -1,7 +1,7 @@
 -- Settings for nvimtree
 vim.g.nvim_tree_respect_buf_cwd = 1
 
-vim.keymap.set("n", "<leader>e", ":NvimTreeFocus<Cr>", {})  -- Open grep
+vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})  -- Open grep
 vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {}) -- Open grep
 
 -- Settings for terminal
