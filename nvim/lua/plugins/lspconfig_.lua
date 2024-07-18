@@ -34,7 +34,8 @@ return {
                     "jsonls",
                     "taplo",     -- toml
                     "terraformls",
-                    "tflint"
+                    "tflint",
+                    "rnix", -- Nix config lang
                 },
             })
         end,
@@ -109,6 +110,9 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.tflint.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.rnix.setup({
                 capabilities = capabilities,
             })
 
