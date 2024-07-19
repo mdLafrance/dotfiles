@@ -24,7 +24,9 @@ in
       waybar
       go
       mold
-      gcc
+      clang-tools
+      clang
+      llvmPackages.libcxxStdenv
       cmake
       gnumake
       ninja
@@ -46,6 +48,8 @@ in
       rustfmt
       rust-analyzer
       unityhub
+      glfw-wayland
+      stylua
     ];
 
   programs.zsh = {
