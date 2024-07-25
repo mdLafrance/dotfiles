@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>i", ":LazyGit<CR>", {})
 vim.keymap.set("n", "<leader>qq", ":qa!<CR>", {})
 
 -- Start markdown preivew
-vim.keymap.set("n", "<leader>md", ":MarkdownPreview<CR>", {})
+vim.keymap.set("n", "<leader>md", ":PeekOpen<CR>", {})
 
 -- Lint
 vim.keymap.set("n", "<leader>l", vim.lsp.buf.format, {})

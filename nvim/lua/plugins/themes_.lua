@@ -46,9 +46,9 @@ return {
             vim.cmd.colorscheme("night-owl")
         end,
     },
-    -- {
-    --     "rebelot/kanagawa.nvim", name = "kanagawa", priority = 1000
-    -- },
+    {
+        "rebelot/kanagawa.nvim", name = "kanagawa", priority = 1000
+    },
     -- {
     --     "ramojus/mellifluous.nvim", name = "mellifluous"
     -- },
