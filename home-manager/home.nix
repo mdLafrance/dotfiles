@@ -2,6 +2,9 @@
 
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  wrapped_spotify = pkgs.writeShellScriptBin "spotify" ''
+    exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
+    '';
 in
 {
   home = {
@@ -19,6 +22,7 @@ in
       zsh
       python310
       nodejs_22
+      nodePackages.typescript
       google-chrome
       starship
       waybar
@@ -40,7 +44,7 @@ in
       chromium
       neofetch
       discord
-      spotify
+      wrapped_spotify
       pavucontrol
       pamixer
       awscli2
@@ -50,6 +54,25 @@ in
       unityhub
       glfw-wayland
       stylua
+      wezterm
+      cmake-format
+      pipx
+      yarn
+      libGLU
+      glxinfo
+      apitrace
+      egl-wayland
+      libglvnd
+      mesa
+      libGL
+      vulkan-headers
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-tools
+      shaderc
+      gdb
+      deno
+      flameshot
     ];
 
   programs.zsh = {
@@ -60,6 +83,7 @@ in
 
     envExtra = ''
       source ~/dotfiles/zsh/.aliases;
+      export LD_LIBRARY_PATH=${pkgs.wayland}/lib:${pkgs.egl-wayland}/lib:/run/opengl-driver/lib:${pkgs.libglvnd}/lib:/run/opengl-driver-32/lib:$LD_LIBRARY_PATH
       eval $(starship init zsh);
     '';
 

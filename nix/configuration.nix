@@ -7,6 +7,10 @@
       /etc/nixos/hardware-configuration.nix
     ];
 
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -32,10 +36,13 @@
       enable = true;
       wayland = true;
     };
+    desktopManager.gnome.enable = true;
   };
 
+  xdg.portal.enable = true;
+
   services.displayManager.autoLogin = {
-    enable = true;
+    enable = false;
     user = "mdlafrance";
   };
 
@@ -93,7 +100,7 @@
   users.users.mdlafrance = {
     isNormalUser = true;
     description = "mdlafrance";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   nixpkgs.config.allowUnfree = true;
