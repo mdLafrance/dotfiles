@@ -49,6 +49,8 @@ return {
     {
         "rebelot/kanagawa.nvim", name = "kanagawa", priority = 1000
     },
+    { 'projekt0n/github-nvim-theme' }
+
     -- {
     --     "ramojus/mellifluous.nvim", name = "mellifluous"
     -- },

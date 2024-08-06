@@ -5,9 +5,7 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})  -- Open grep
 vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {}) -- Open grep
 
 -- Settings for terminal
-vim.keymap.set("n", "<leader>t", function()
-    require("nvterm.terminal").toggle("float")
-end, {}) -- Open grep
+vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open grep
 
 -- Settings for telescope
 local telescope_builtin = require("telescope.builtin")

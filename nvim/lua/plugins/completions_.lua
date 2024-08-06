@@ -42,21 +42,22 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
-                    ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "buffer",  max_item_count = 5 },
-                    { name = "path",    max_item_count = 5 }, -- file system paths
+                    { name = "supermaven" },
+                    { name = "buffer",    max_item_count = 3 },
+                    { name = "path",      max_item_count = 3 }, -- file system paths
                     { name = "luasnip" },
                 }),
                 -- Enables pictograms in lsp autocomplete suggestions
                 formatting = {
                     expandable_indicator = true,
                     format = lspkind.cmp_format({
-                        mode = "symbol_text",
-                        maxwidth = 50,
-                        ellipsis_char = "...",
+                        mode = "symbol",
+                        max_width = 50,
+                        symbol_map = { Supermaven = " " }
                     })
                 },
                 experimental = {
