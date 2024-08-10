@@ -142,6 +142,11 @@ if command_exists Hyprland; then
     link_config "Hyprland" "${HOME}/.config/hypr/hyprland.conf" "${PWD}/hyprland/hyprland.conf"
 fi
 
+### waybar
+if command_exists waybar; then
+    link_config "Waybar" "${HOME}/.config/waybar" "${PWD}/waybar"
+fi
+
 ### qutebrowser
 if command_exists qutebrowser; then
     link_config "qutebrowser" "${HOME}/.config/qutebrowser" "${PWD}/qutebrowser"

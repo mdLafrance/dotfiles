@@ -1,5 +1,5 @@
 format = """
-[](fg:#b7cce8)\
+[](fg:#b7cce8)\
 $os\
 $username\
 [](bg:#769ff0 fg:#b7cce8)\
@@ -14,24 +14,23 @@ $golang\
 $php\
 $python\
 $c\
-[](fg:#212736 bg:#1d2230)\
-$time\
-[ ](fg:#1d2230)\
+[](fg:#212736)\
 \n$character"""
 
 [character]
-success_symbol = '[❯](bold #769ff0)'
-
+success_symbol = '[  ](bold #b7cce8)'
+error_symbol = '[ ](bold red) '
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
 style = "bg:#b7cce8 fg:#212736"
-disabled = false # Disabled by default
+disabled = false                # Disabled by default
 
 [os.symbols]
 Arch = "󰣇 "
 Mint = "󰣭 "
 NixOS = " "
+EndeavourOS = "󰣇 "
 
 [username]
 show_always = true
@@ -102,6 +101,6 @@ format = '[[ $symbol ($version) ($virtualenv) ](fg:#769ff0 bg:#212736)]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"                                      # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
