@@ -5,10 +5,10 @@
 	"modules-left": [
 		"hyprland/workspaces",
 		"custom/right-arrow-dark2",
-		"custom/right-arrow-dark",
+		"custom/right-arrow-dark-transparent",
 	],
 	"modules-center": [
-		"custom/left-arrow-dark",
+		"custom/left-arrow-dark-transparent",
 		"clock#1",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
@@ -16,10 +16,10 @@
 		"custom/right-arrow-dark",
 		"custom/right-arrow-light",
 		"clock#3",
-		"custom/right-arrow-dark"
+		"custom/right-arrow-dark-transparent"
 	],
 	"modules-right": [
-		"custom/left-arrow-dark",
+		"custom/left-arrow-dark-transparent",
 		"pulseaudio",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
@@ -42,6 +42,14 @@
 		"format": "",
 		"tooltip": false
 	},
+	"custom/left-arrow-dark-transparent": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
 	"custom/left-arrow-light": {
 		"format": "",
 		"tooltip": false
@@ -54,7 +62,10 @@
 		"format": "",
 		"tooltip": false
 	},
-
+	"custom/right-arrow-dark-transparent": {
+		"format": "",
+		"tooltip": false
+	},
 	"custom/right-arrow-light": {
 		"format": "",
 		"tooltip": false
@@ -108,6 +119,8 @@
 			"critical": 15
 		},
 		"format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
 		"format-icons": [
 			"",
 			"",

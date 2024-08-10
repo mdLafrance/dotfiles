@@ -1,17 +1,36 @@
+@define-color background-transparent rgba(0.2, 0.2, 0.2, 0.5);
+@define-color background #292b2e;
+
 * {
 	font-size: 16px;
 	font-family: monospace;
-
 }
 
-window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+#waybar {
+    background: @background-transparent;
+}
+
+.modules-left {
+    background: @inherit;
+}
+
+.modules-right {
+    background: @inherit;
+}
+
+.modules-center {
+    background: @inherit;
+}
+
+#custom-right-arrow-dark-transparent,
+#custom-left-arrow-dark-transparent {
+	color: #1a1a1a;
 }
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
 	color: #1a1a1a;
+    background: @background
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
