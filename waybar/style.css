@@ -53,6 +53,7 @@
 #cpu,
 #battery,
 #disk,
+#network,
 #tray {
 	background: #1a1a1a;
 }
@@ -86,7 +87,7 @@
 #battery {
 	color: #859900;
 }
-#disk {
+#network {
 	color: #b58900;
 }
 
@@ -95,6 +96,7 @@
 #memory,
 #cpu,
 #battery,
+#network,
 #disk {
 	padding: 0 10px;
 }

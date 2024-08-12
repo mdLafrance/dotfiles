@@ -16,9 +16,9 @@ return {
         name = "mellifluous",
         setup = function()
             require("mellifluous").setup({
-                color_set = "tender"
+                color_set = "tender",
             })
-        end
+        end,
     },
     { "EdenEast/nightfox.nvim" },
     {
@@ -38,7 +38,7 @@ return {
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
     {
         "oxfist/night-owl.nvim",
-        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             -- load the colorscheme here
@@ -47,11 +47,23 @@ return {
         end,
     },
     {
-        "rebelot/kanagawa.nvim", name = "kanagawa", priority = 1000
+        "rebelot/kanagawa.nvim",
+        name = "kanagawa",
+        priority = 1000,
     },
-    { 'projekt0n/github-nvim-theme' },
+    { "projekt0n/github-nvim-theme" },
 
     {
-        "ramojus/mellifluous.nvim", name = "mellifluous"
+        "ramojus/mellifluous.nvim",
+        name = "mellifluous",
+    },
+    -- Lazy
+    {
+        "vague2k/vague.nvim",
+        config = function()
+            require("vague").setup({
+                -- optional configuration here
+            })
+        end,
     },
 }
