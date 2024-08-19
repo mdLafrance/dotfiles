@@ -26,9 +26,9 @@ vim.keymap.set("n", "<leader>md", ":PeekOpen<CR>", {})
 
 -- Lint
 vim.keymap.set("n", "<leader>l", vim.lsp.buf.format, {})
+
 -- Enable format on save using LSP
 vim.cmd([[autocmd BufWritePre *.cpp,*.h lua vim.lsp.buf.format()]])
-
 
 -- Open theme select
 vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", {})
@@ -44,3 +44,9 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 
 -- Open outliner
 vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
+
+-- Extra lsp 
+vim.api.nvim_set_keymap('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pt', '<cmd>Lspsaga peek_type_definition<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gtt', '<cmd>Lspsaga goto_type_definition<CR>', { noremap = true, silent = true })
+
