@@ -31,6 +31,7 @@ Arch = "󰣇 "
 Mint = "󰣭 "
 NixOS = " "
 EndeavourOS = "󰣇 "
+Ubuntu = " "
 
 [username]
 show_always = true
