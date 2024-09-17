@@ -123,6 +123,7 @@ return {
             vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})
             vim.keymap.set("n", "<leader>3", vim.lsp.buf.code_action, {})
+
         end,
     },
 }
