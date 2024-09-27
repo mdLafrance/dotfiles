@@ -19,6 +19,7 @@ return {
 					"cmake",
 					-- "autotools_ls",
 					"cssls",
+                    "css_variables",
 					"bashls",
 					"dockerls",
 					"docker_compose_language_service",
@@ -56,6 +57,10 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.cssls.setup({
+				capabilities = capabilities,
+				filetypes = { "css", "scss", "less", "typescript", "typescriptreact", "typescript.tsx" },
+			})
+			lspconfig.css_variables.setup({
 				capabilities = capabilities,
 				filetypes = { "css", "scss", "less", "typescript", "typescriptreact", "typescript.tsx" },
 			})
