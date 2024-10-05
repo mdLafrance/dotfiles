@@ -94,7 +94,9 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 -- Open outliner
 vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
 
--- Extra lsp
-vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gtt", "<cmd>Lspsaga goto_type_definition<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pt', '<cmd>Lspsaga peek_type_definition<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gtt', '<cmd>Lspsaga goto_type_definition<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Lspsaga finder<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lspr', '<cmd>LspRestart<CR>', { noremap = true, silent = true })
+
