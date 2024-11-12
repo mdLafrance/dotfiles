@@ -42,6 +42,13 @@ local function custom_format()
 		end, clients)
 	end
 
+	-- Filter out html for templ files
+	if filetype ~= "html" then
+		clients = vim.tbl_filter(function(client)
+			return client.name ~= "html"
+		end, clients)
+	end
+
 	-- Call formatting
 	vim.lsp.buf.format({
 		bufnr = bufnr,
@@ -52,32 +59,10 @@ local function custom_format()
 	})
 end
 
-local templ_format = function()
-    if vim.bo.filetype == "templ" then
-        local bufnr = vim.api.nvim_get_current_buf()
-        local filename = vim.api.nvim_buf_get_name(bufnr)
-        local cmd = "templ fmt " .. vim.fn.shellescape(filename)
-
-        vim.fn.jobstart(cmd, {
-            on_exit = function()
-                -- Reload the buffer only if it's still the current buffer
-                if vim.api.nvim_get_current_buf() == bufnr then
-                    vim.cmd('e!')
-                end
-            end,
-        })
-    else
-        vim.lsp.buf.format()
-    end
-end
-
-vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = templ_format })
-
 -- Lint
 vim.keymap.set("n", "<leader>l", custom_format, {})
 
 -- Enable format on save using LSP
-vim.cmd([[autocmd BufWritePre *.cpp,*.h lua custom_format()]])
 
 -- Open theme select
 vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", {})
@@ -94,9 +79,8 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 -- Open outliner
 vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
 
-vim.api.nvim_set_keymap('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>pt', '<cmd>Lspsaga peek_type_definition<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gtt', '<cmd>Lspsaga goto_type_definition<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Lspsaga finder<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lspr', '<cmd>LspRestart<CR>', { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gtt", "<cmd>Lspsaga goto_type_definition<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fa", "<cmd>Lspsaga finder<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lspr", "<cmd>LspRestart<CR>", { noremap = true, silent = true })
