@@ -3,6 +3,7 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {}) -- Open grep
 vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {}) -- Open grep
+vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Open grep
 
 -- Settings for terminal
 vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open grep
