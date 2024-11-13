@@ -73,6 +73,7 @@ in
       gdb
       deno
       flameshot
+      go-task
     ];
 
   programs.zsh = {
