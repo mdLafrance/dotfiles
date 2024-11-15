@@ -38,7 +38,7 @@ return {
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
     {
         "oxfist/night-owl.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             -- load the colorscheme here
@@ -57,7 +57,6 @@ return {
         "ramojus/mellifluous.nvim",
         name = "mellifluous",
     },
-    -- Lazy
     {
         "vague2k/vague.nvim",
         config = function()
@@ -66,4 +65,9 @@ return {
             })
         end,
     },
+    {
+        'olivercederborg/poimandres.nvim',
+        lazy = false,
+        priority = 1000,
+    }
 }
