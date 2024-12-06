@@ -1,6 +1,45 @@
--- Setup for code completion using nvim-cmp
+-- Plugins related to editor config
 
 return {
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            local config = require("nvim-treesitter.configs")
+            config.setup({
+                auto_install = true,
+                sync_install = false,
+                highlight = { enable = true, use_languagetree = true },
+                -- indent = { enable = true },
+                autotag = {
+                    -- enable = true,
+                },
+            })
+        end,
+    },
+
+    {
+        "windwp/nvim-ts-autotag",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("nvim-ts-autotag").setup({
+                filetypes = {
+                    "html",
+                    "xml",
+                    "eruby",
+                    "embedded_template",
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                },
+            })
+        end,
+        lazy = true,
+        event = "VeryLazy",
+    },
+
     -- Config for snippets engine
     {
         "hrsh7th/nvim-cmp",
@@ -78,4 +117,64 @@ return {
             -- end
         end,
     },
+
+    -- Code formatting
+    {
+        "stevearc/conform.nvim",
+        opts = {},
+        setup = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "black" },
+                    javascript = { { "prettierd", "prettier" } },
+                    cc = { "astyle" },
+                    ["_"] = { "trim_whitespace" },
+                },
+                format_on_save = {
+                    -- These options will be passed to conform.format()
+                    timeout_ms = 500,
+                    lsp_fallback = false,
+                },
+            })
+
+            -- vim.api.nvim_create_autocmd("BufWritePre", {
+            --     pattern = "*",
+            --     callback = function(args)
+            --         require("conform").format({ bufnr = args.buf })
+            --     end,
+            -- })
+        end,
+    },
+
+    -- Additional formatting
+    {
+        "nvimtools/none-ls.nvim",
+
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.formatting.gofmt,
+                    null_ls.builtins.formatting.goimports,
+                    null_ls.builtins.formatting.black,
+                    null_ls.builtins.formatting.clang_format,
+                    null_ls.builtins.formatting.cmake_format,
+                    null_ls.builtins.formatting.fixjson,
+                    null_ls.builtins.formatting.rustfmt,
+                    null_ls.builtins.formatting.eslint_d, -- Javscript
+                },
+            })
+        end,
+    },
+
+    -- Auto bracket closing
+    {
+        'm4xshen/autoclose.nvim',
+        config = function()
+            require("autoclose").setup()
+        end
+    }
+
 }

@@ -1,6 +1,24 @@
 -- Mason lsp server config
 
 return {
+    -- Additional lsp functionality
+    {
+        "nvimdev/lspsaga.nvim",
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons'
+        },
+        config = function()
+            require("lspsaga").setup({
+                -- This is the breadcrumbs at the top of the buf
+                symbol_in_winbar = {
+                    enable = true
+                }
+            })
+        end,
+    },
+
+    -- LSP integration
     {
         "williamboman/mason.nvim",
         config = function()
@@ -9,6 +27,8 @@ return {
             })
         end,
     },
+
+    -- Automatic download and configuration of LSPs
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
@@ -24,18 +44,18 @@ return {
                     "dockerls",
                     "docker_compose_language_service",
                     "gopls",
-                    "jdtls", -- java
-                    "marksman", -- markdown
+                    "jdtls",                -- java
+                    "marksman",             -- markdown
                     "powershell_es",
-                    "pyright", -- python
+                    "pyright",              -- python
                     "jedi_language_server", -- python
                     "rust_analyzer",
                     "ts_ls",
                     "tailwindcss",
                     "hydra_lsp", -- yaml
-                    "eslint", -- Javascript formatting
+                    "eslint",    -- Javascript formatting
                     "jsonls",
-                    "taplo", -- toml
+                    "taplo",     -- toml
                     "terraformls",
                     "tflint",
                     "templ", -- golang templ files
@@ -65,7 +85,6 @@ return {
             })
             lspconfig.clangd.setup({
                 capabilities = capabilities,
-                on_attach = on_attach,
                 cmd = {
                     "clangd",
                     "--offset-encoding=utf-16",
@@ -74,9 +93,6 @@ return {
             lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
-            -- lspconfig.autotools_ls.setup({
-            --     capabilities = capabilities,
-            -- })
             lspconfig.rust_analyzer.setup({
                 capabilities = capabilities,
                 ["rust_analyzer"] = {
@@ -148,4 +164,50 @@ return {
             vim.keymap.set("n", "<leader>3", vim.lsp.buf.code_action, {})
         end,
     },
+
+    -- Additional rust tooling
+    {
+        -- Rust autoformatting on save
+        {
+            "rust-lang/rust.vim",
+            ft = "rust",
+            init = function()
+                vim.g.rustfmt_autosave = 1
+            end,
+        },
+    },
+
+    -- Supermaven
+    {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({})
+        end,
+    },
+
+    -- Additional golang tooling
+    {
+        "ray-x/go.nvim",
+        dependencies = { -- optional packages
+            "ray-x/guihua.lua",
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("go").setup()
+            local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+
+            -- Autoformat go on save
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                pattern = "*.go",
+                callback = function()
+                    require("go.format").goimport()
+                end,
+                group = format_sync_grp,
+            })
+        end,
+        event = { "CmdlineEnter" },
+        ft = { "go", "gomod" },
+        build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+    }
 }
