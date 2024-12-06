@@ -1,6 +1,27 @@
 -- Plugins related to ide config
 
 return {
+    -- Grab bag of upgrades
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = true },
+            notifier = { enabled = true },
+            quickfile = { enabled = true },
+        },
+        keys = {
+            { "<leader>nl", function() Snacks.notifier.show_history() end, desc = "Notification History" },
+            { "<leader>nh", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
+            { "<leader>T",  function() Snacks.terminal() end,              desc = "Toggle Terminal" },
+            { "<leader>gB", function() Snacks.gitbrowse() end,             desc = "Git Browse" },
+        }
+    },
+
     -- File explorer
     {
         "nvim-tree/nvim-tree.lua",

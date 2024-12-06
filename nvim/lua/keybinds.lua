@@ -1,20 +1,20 @@
 -- Settings for nvimtree
 vim.g.nvim_tree_respect_buf_cwd = 1
 
-vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {}) -- Open grep
-vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {}) -- Open grep
-vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Open grep
+vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})      -- Open explorer
+vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {})    -- Close explorer
+vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Explorer collapse
 
 -- Settings for terminal
-vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open grep
+vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open terminal
 
 -- Settings for telescope
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>f", telescope_builtin.find_files, {}) -- Open file finder
-vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {}) -- Open grep
+vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {})  -- Open grep
 
 -- Open trouble - warnings and errors pane
-vim.keymap.set("n", "<leader>w", ":TroubleToggle<CR>", {}) -- Open file finder
+vim.keymap.set("n", "<leader>w", ":TroubleToggle<CR>", {}) -- Open warnings
 
 -- Open lazygit
 vim.keymap.set("n", "<leader>i", ":LazyGit<CR>", {})
@@ -30,46 +30,47 @@ vim.keymap.set("n", "<leader>md", ":PeekOpen<CR>", {})
 -- also gets called when formatting. This file is a hook that
 -- filters out cssls if we're in a tsx file.
 local function custom_format()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local filetype = vim.bo[bufnr].filetype
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filetype = vim.bo[bufnr].filetype
 
-	-- Get all active clients for the current buffer
-	local clients = vim.lsp.buf_get_clients(bufnr)
+    -- Get all active clients for the current buffer
+    local clients = vim.lsp.buf_get_clients(bufnr)
 
-	-- Filter out cssls for tsx files
-	if filetype ~= "css" then
-		clients = vim.tbl_filter(function(client)
-			return client.name ~= "cssls"
-		end, clients)
-	end
+    -- Filter out cssls for tsx files
+    if filetype ~= "css" then
+        clients = vim.tbl_filter(function(client)
+            return client.name ~= "cssls"
+        end, clients)
+    end
 
-	-- Filter out html for templ files
-	if filetype ~= "html" then
-		clients = vim.tbl_filter(function(client)
-			return client.name ~= "html"
-		end, clients)
-	end
+    -- Filter out html for templ files
+    if filetype ~= "html" then
+        clients = vim.tbl_filter(function(client)
+            return client.name ~= "html"
+        end, clients)
+    end
 
-	-- Call formatting
-	vim.lsp.buf.format({
-		bufnr = bufnr,
-		filter = function(client)
-			-- Use the filtered clients list
-			return vim.tbl_contains(clients, client)
-		end,
-	})
+    -- Call formatting
+    vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function(client)
+            -- Use the filtered clients list
+            return vim.tbl_contains(clients, client)
+        end,
+    })
 end
 
--- Lint
+-- Call format
 vim.keymap.set("n", "<leader>l", custom_format, {})
-
--- Enable format on save using LSP
 
 -- Open theme select
 vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", {})
 
--- Open mason
+-- Open Mason
 vim.keymap.set("n", "<leader>m", ":Mason<CR>", {})
+
+-- Open Lazy
+vim.keymap.set("n", "<leader>l", ":Lazy<CR>", {})
 
 -- Open error messages
 vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
