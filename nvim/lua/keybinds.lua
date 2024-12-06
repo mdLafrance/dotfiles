@@ -70,7 +70,7 @@ vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", {})
 vim.keymap.set("n", "<leader>m", ":Mason<CR>", {})
 
 -- Open Lazy
-vim.keymap.set("n", "<leader>l", ":Lazy<CR>", {})
+vim.keymap.set("n", "<leader>L", ":Lazy<CR>", {})
 
 -- Open error messages
 vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
@@ -81,8 +81,18 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 -- Open outliner
 vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
 
+-- LSP
 vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gtt", "<cmd>Lspsaga goto_type_definition<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fa", "<cmd>Lspsaga finder<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lspi", "<cmd>LspInfo<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>lspr", "<cmd>LspRestart<CR>", { noremap = true, silent = true })
+
+-- Menu
+vim.keymap.set("n", "<RightMouse>", function()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+
+  local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+  require("menu").open(options, { mouse = true })
+end, {})

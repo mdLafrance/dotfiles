@@ -250,5 +250,9 @@ return {
     },
 
     -- Transparent background
-    { "xiyaowong/transparent.nvim" }
+    { "xiyaowong/transparent.nvim" },
+
+    -- Menu
+    { "nvzone/volt", lazy = true },
+    { "nvzone/menu", lazy = true },
 }
