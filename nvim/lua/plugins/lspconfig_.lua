@@ -30,7 +30,7 @@ return {
                     "pyright", -- python
                     "jedi_language_server", -- python
                     "rust_analyzer",
-                    "tsserver",
+                    "ts_ls",
                     "tailwindcss",
                     "hydra_lsp", -- yaml
                     "eslint", -- Javascript formatting
@@ -95,7 +95,7 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.tsserver.setup({
+            lspconfig.ts_ls.setup({
                 capabilities = capabilities,
                 init_options = {
                     plugins = {
