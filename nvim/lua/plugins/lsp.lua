@@ -12,7 +12,7 @@ return {
             require("lspsaga").setup({
                 -- This is the breadcrumbs at the top of the buf
                 symbol_in_winbar = {
-                    enable = true
+                    enable = false
                 }
             })
         end,
@@ -209,5 +209,18 @@ return {
         event = { "CmdlineEnter" },
         ft = { "go", "gomod" },
         build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-    }
+    },
+
+    -- Additional lua config
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
 }
