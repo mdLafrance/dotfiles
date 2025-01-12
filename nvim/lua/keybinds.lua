@@ -96,3 +96,12 @@ vim.keymap.set("n", "<RightMouse>", function()
   local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
   require("menu").open(options, { mouse = true })
 end, {})
+
+-- Tabby
+vim.keymap.set("n", "<leader>nt", ":TabbyNewTab<CR>", {})
+vim.keymap.set("n", "<leader>mt", ":TabbyConvertToTabGroup<CR>", {})
+vim.keymap.set("n", "<leader>cl", ":TabbyCloseTab<CR>", {})
+vim.keymap.set("n", "<leader>tdr", ":TabbyDetach right<CR>", {})
+vim.keymap.set("n", "<leader>tdd", ":TabbyDetach below<CR>", {})
+vim.keymap.set("n", "<leader>[", ":TabbyPreviousTab<CR>", {})
+vim.keymap.set("n", "<leader>]", ":TabbyNextTab<CR>", {})

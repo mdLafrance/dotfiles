@@ -17,8 +17,32 @@ in
     allowUnfree = true;
   };
 
+  home.sessionVariables = {
+    OPENSSL_DIR = "${pkgs.openssl.dev}";
+    OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
+    OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
+    PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+    LD_LIBRARY_PATH = "/run/current-system/sw/lib";
+  };
+
   home.packages = with pkgs;
-    [
+    [        
+      unstable.neovim
+      gitlab-runner
+      google-cloud-sdk
+      terraform-ls
+      atk
+      cairo
+      librsvg
+      libsoup_3
+      sqlite
+      glib 
+      gtk3 
+      libsoup
+      webkitgtk_4_1
+      wineWowPackages.stable
+      winetricks
+      swww
       zsh
       python310
       nodejs_22
@@ -74,6 +98,8 @@ in
       deno
       flameshot
       go-task
+      openssl
+      pkg-config
     ];
 
   programs.zsh = {
