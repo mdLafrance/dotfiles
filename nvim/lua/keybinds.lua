@@ -105,3 +105,7 @@ vim.keymap.set("n", "<leader>tdr", ":TabbyDetach right<CR>", {})
 vim.keymap.set("n", "<leader>tdd", ":TabbyDetach below<CR>", {})
 vim.keymap.set("n", "<leader>[", ":TabbyPreviousTab<CR>", {})
 vim.keymap.set("n", "<leader>]", ":TabbyNextTab<CR>", {})
+
+-- Flip
+vim.keymap.set("n", "<leader>fb", ":FlipBack<CR>", {})
+vim.keymap.set("n", "<leader>fh", ":FlipToRecent<CR>", {})
