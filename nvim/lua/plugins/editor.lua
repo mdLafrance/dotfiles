@@ -1,6 +1,16 @@
 -- Plugins related to editor config
 
 return {
+    {
+        "mdlafrance/flip.nvim"<
+        opts = {}
+    },
+
+    {
+        "mdlafrance/tabby.nvim"<
+        opts = {}
+    },
+    
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
