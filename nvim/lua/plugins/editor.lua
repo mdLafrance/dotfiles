@@ -2,12 +2,12 @@
 
 return {
     {
-        "mdlafrance/flip.nvim"<
+        "mdlafrance/flip.nvim",
         opts = {}
     },
 
     {
-        "mdlafrance/tabby.nvim"<
+        "mdlafrance/tabby.nvim",
         opts = {}
     },
     
