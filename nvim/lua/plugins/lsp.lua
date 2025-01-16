@@ -18,6 +18,13 @@ return {
         end,
     },
 
+    -- Better hover doc
+    {
+        "Fildo7525/pretty_hover",
+        event = "LspAttach",
+        opts = {}
+    },
+
     -- LSP integration
     {
         "williamboman/mason.nvim",
@@ -61,6 +68,7 @@ return {
                     "templ", -- golang templ files
                     "html",
                     "sqlls",
+                    "elixirls"
                 },
             })
         end,
@@ -69,6 +77,17 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            capabilities.textDocument.signatureHelp = {
+                dynamicRegistration = true,
+                signatureInformation = {
+                    documentationFormat = { 'markdown', 'plaintext' },
+                    parameterInformation = {
+                        labelOffsetSupport = true
+                    },
+                    activeParameterSupport = true
+                }
+            }
 
             local lspconfig = require("lspconfig")
 
@@ -158,10 +177,11 @@ return {
                     return require("lspconfig.util").find_git_ancestor(fname) or vim.fn.getcwd()
                 end,
             })
-
-            vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "<leader>3", vim.lsp.buf.code_action, {})
+            lspconfig.elixirls.setup({
+                capabilities = capabilities,
+                cmd = { "/home/mdlafrance/.local/share/nvim/mason/bin/elixir-ls" }
+                -- cmd = { require("mason-registry").get_package("elixir-ls"):get_install_path() }
+            })
         end,
     },
 

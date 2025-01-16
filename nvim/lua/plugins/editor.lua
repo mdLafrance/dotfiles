@@ -1,6 +1,30 @@
 -- Plugins related to editor config
 
 return {
+    {
+        dir = "~/hacking/trull.nvim",
+    },
+
+    {
+        dir = "~/hacking/hoverboard.nvim",
+        opts = {
+        }
+    },
+
+    {
+        dir = "~/hacking/flip.nvim",
+        opts = {
+        }
+    },
+
+    {
+        -- "mdlafrance/tabby.nvim",
+        dir = "~/hacking/tabby.nvim",
+        opts = {
+            remove_tab_group_if_only_tab = false
+        }
+    },
+
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -174,5 +198,11 @@ return {
         config = function()
             require("autoclose").setup()
         end
+    },
+
+    {
+        "rktjmp/lush.nvim",
+        -- if you wish to use your own colorscheme:
+        -- { dir = '/absolute/path/to/colorscheme', lazy = true },
     }
 }
