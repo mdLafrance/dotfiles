@@ -82,6 +82,10 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
 
 -- LSP
+-- vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>1", require("pretty_hover").hover, {})
+vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>3", vim.lsp.buf.code_action, {})
 vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gtt", "<cmd>Lspsaga goto_type_definition<CR>", { noremap = true, silent = true })
@@ -91,20 +95,24 @@ vim.api.nvim_set_keymap("n", "<leader>lspr", "<cmd>LspRestart<CR>", { noremap = 
 
 -- Menu
 vim.keymap.set("n", "<RightMouse>", function()
-  vim.cmd.exec '"normal! \\<RightMouse>"'
+    vim.cmd.exec '"normal! \\<RightMouse>"'
 
-  local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-  require("menu").open(options, { mouse = true })
+    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+    require("menu").open(options, { mouse = true })
 end, {})
 
 -- Tabby
 vim.keymap.set("n", "<leader>nt", ":TabbyNewTab<CR>", {})
-vim.keymap.set("n", "<leader>mt", ":TabbyConvertToTabGroup<CR>", {})
 vim.keymap.set("n", "<leader>cl", ":TabbyCloseTab<CR>", {})
-vim.keymap.set("n", "<leader>tdr", ":TabbyDetach right<CR>", {})
-vim.keymap.set("n", "<leader>tdd", ":TabbyDetach below<CR>", {})
+
 vim.keymap.set("n", "<leader>[", ":TabbyPreviousTab<CR>", {})
 vim.keymap.set("n", "<leader>]", ":TabbyNextTab<CR>", {})
 
+vim.keymap.set("n", "<leader>tdr", ":TabbyDetach right<CR>", {})
+vim.keymap.set("n", "<leader>tdd", ":TabbyDetach below<CR>", {})
+vim.keymap.set("n", "<leader>tmr", ":TabbyMerge right<CR>", {})
+vim.keymap.set("n", "<leader>tml", ":TabbyMerge left<CR>", {})
+
 -- Flip
 vim.keymap.set("n", "<leader>fb", ":FlipBack<CR>", {})
+vim.keymap.set("n", "<leader>fh", ":FlipToRecent<CR>", {})
