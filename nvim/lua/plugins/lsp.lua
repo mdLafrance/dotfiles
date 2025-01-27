@@ -68,7 +68,8 @@ return {
                     "templ", -- golang templ files
                     "html",
                     "sqlls",
-                    "elixirls"
+                    "elixirls",
+                    "zls"
                 },
             })
         end,
@@ -181,6 +182,9 @@ return {
                 capabilities = capabilities,
                 cmd = { "/home/mdlafrance/.local/share/nvim/mason/bin/elixir-ls" }
                 -- cmd = { require("mason-registry").get_package("elixir-ls"):get_install_path() }
+            })
+            lspconfig.zls.setup({
+                capabilities = capabilities,
             })
         end,
     },
