@@ -35,7 +35,15 @@ return {
             })
         end,
     },
-    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = function()
+            require("gruvbox").setup({
+                contrast = "hard"
+            })
+        end
+    },
     {
         "oxfist/night-owl.nvim",
         lazy = false,    -- make sure we load this during startup if it is your main colorscheme
@@ -69,5 +77,5 @@ return {
         'olivercederborg/poimandres.nvim',
         lazy = false,
         priority = 1000,
-    }
+    },
 }
