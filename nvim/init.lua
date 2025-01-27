@@ -15,6 +15,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+vim.opt.cmdheight = 1;
 
 vim.g.mapleader = " " -- NOTE: specifically mapleader needs to be rebound before lazy is loaded
 

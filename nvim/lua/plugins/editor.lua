@@ -8,7 +8,10 @@ return {
 
     {
         "mdlafrance/flip.nvim",
-        opts = {}
+        opts = { debug = false },
+        dependencies = {
+            "MunifTanjim/nui.nvim"
+        }
     },
 
     -- Treesitter
@@ -186,9 +189,9 @@ return {
         end
     },
 
-    {
-        "rktjmp/lush.nvim",
-        -- if you wish to use your own colorscheme:
-        -- { dir = '/absolute/path/to/colorscheme', lazy = true },
-    }
+    -- {
+    --     "rktjmp/lush.nvim",
+    --     -- if you wish to use your own colorscheme:
+    --     -- { dir = '/absolute/path/to/colorscheme', lazy = true },
+    -- }
 }

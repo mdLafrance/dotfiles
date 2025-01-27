@@ -55,7 +55,6 @@ return {
                     "marksman",             -- markdown
                     "powershell_es",
                     "pyright",              -- python
-                    "jedi_language_server", -- python
                     "rust_analyzer",
                     "ts_ls",
                     "tailwindcss",
@@ -202,12 +201,12 @@ return {
     },
 
     -- Supermaven
-    {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-            require("supermaven-nvim").setup({})
-        end,
-    },
+    -- {
+    --     "supermaven-inc/supermaven-nvim",
+    --     config = function()
+    --         require("supermaven-nvim").setup({})
+    --     end,
+    -- },
 
     -- Additional golang tooling
     {

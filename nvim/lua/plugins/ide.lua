@@ -18,7 +18,6 @@ return {
             { "<leader>nl", function() Snacks.notifier.show_history() end, desc = "Notification History" },
             { "<leader>nh", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
             { "<leader>T",  function() Snacks.terminal() end,              desc = "Toggle Terminal" },
-            { "<leader>gB", function() Snacks.gitbrowse() end,             desc = "Git Browse" },
         }
     },
 
@@ -159,12 +158,12 @@ return {
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
     -- An icon picker
-    {
-        "ziontee113/icon-picker.nvim",
-        config = function()
-            require("icon-picker").setup({ disable_legacy_commands = true })
-        end
-    },
+    -- {
+    --     "ziontee113/icon-picker.nvim",
+    --     config = function()
+    --         require("icon-picker").setup({ disable_legacy_commands = true })
+    --     end
+    -- },
 
     -- Switches line number between relative/absolute
     {
@@ -230,6 +229,7 @@ return {
     {
         "folke/noice.nvim",
         dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+        event = 'VeryLazy',
         opts = {
             presets = {
                 lsp_doc_border = true,
