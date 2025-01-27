@@ -27,6 +27,7 @@ in
 
   home.packages = with pkgs;
     [        
+      zig_0_12
       unstable.neovim
       gitlab-runner
       google-cloud-sdk

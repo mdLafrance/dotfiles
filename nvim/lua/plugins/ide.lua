@@ -233,7 +233,13 @@ return {
         opts = {
             presets = {
                 lsp_doc_border = true,
+                bottom_search = true,
+                command_palette = false
             },
+
+            cmdline = {
+                view = "cmdline"
+            }
         },
     },
 
