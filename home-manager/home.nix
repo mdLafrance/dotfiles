@@ -27,6 +27,11 @@ in
 
   home.packages = with pkgs;
     [        
+      wayland-utils
+      libxkbcommon
+      glfw-wayland
+      egl-wayland
+      zenity
       zig_0_12
       unstable.neovim
       gitlab-runner

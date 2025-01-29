@@ -65,7 +65,6 @@
   hardware = {
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
     };
     nvidia = {
@@ -106,10 +105,10 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    wlsunset
     kitty
     git
     firefox
-    brave
     zsh
     unzip
     xclip
@@ -118,15 +117,13 @@
     home-manager
     wayland-scanner
     pkg-config
-    wayland-utils
-    libxkbcommon
-    glfw-wayland
-    egl-wayland
-    blueman
   ];
 
-  programs.nix-ld.enable = true;
+  nix.settings = {
+    sandbox = true;
+  };
 
+  programs.nix-ld.enable = true;
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
