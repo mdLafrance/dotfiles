@@ -116,16 +116,16 @@ return {
                     mappings = {
                         ["n"] = {
                             ["h"] = fb_actions.goto_parent_dir,
-                            ["l"] = require("telescope.actions").select_default,
                             ["c"] = fb_actions.goto_cwd,
                             ["o"] = fb_actions.change_cwd,
-                            ["e"] = require("telescope.actions").select_default,
                             ["a"] = fb_actions.create,
+                            ["l"] = require("telescope.actions").select_default,
                             ["<C-h>"] = fb_actions.toggle_hidden,
                             ["<C-n>"] = fb_actions.create,
+                            ["<C-u"] = fb_actions.goto_home_dir,
                             ["<C-v>"] = require("telescope.actions").select_vertical,
                             ["<C-s>"] = require("telescope.actions").select_horizontal,
-                            ["<C-t>"] = require("telescope.actions").select_tab
+                            ["<C-t>"] = require("telescope.actions").select_tab,
                         }
                     }
 
