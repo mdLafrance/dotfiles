@@ -21,6 +21,9 @@ local function open_file_browser()
         return vim.fn.expand("%:p:h")
     end
 
+    local w = vim.api.nvim_win_get_width(0)
+    local h = vim.api.nvim_win_get_height(0)
+
     telescope.extensions.file_browser.file_browser({
         path = "%:p:h",
         cmd = telescope_buffer_dir(),
@@ -29,8 +32,17 @@ local function open_file_browser()
         grouped = true,
         previewer = true,
         initial_mode = "normal",
-        layout_config = { height = 40 },
-        prompt_title = ""
+
+        prompt_title = vim.fn.getcwd(),
+        theme = "dropdown",
+        layout_config = { height = h, width = w, prompt_position = "top" },
+        sorting_strategy = "ascending",
+        prompt_prefix = "  ",
+        selection_caret = "  ",
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+        file_icons = true,
+        dir_icon = "󰉋"
+
     })
 end
 

@@ -53,20 +53,22 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
-        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+            "nvim-tree/nvim-web-devicons"
+        },
         config = function(_, opts)
             print("Opts?", vim.inspect(opts))
             local fb_actions = require("telescope").extensions.file_browser.actions
 
             opts.defaults = {
-                wrap_results = true,
-                layout_strategy = "horizontal",
-                layout_config = { prompt_position = "top" },
-                sorting_strategy = "ascending",
-                winblend = 0,
-                mappings = {
-                    n = {},
-                },
+                -- wrap_results = true,
+                -- layout_strategy = "horizontal",
+                -- layout_config = { prompt_position = "top" },
+                -- sorting_strategy = "ascending",
+                -- winblend = 0,
                 file_ignore_patterns = { ".git", "node_modules", ".cache" },
             }
 
@@ -109,6 +111,8 @@ return {
                 file_browser = {
                     theme = "dropdown",
                     hijack_netrw = true,
+                    file_icons = true,
+                    folder_icons = true,
                     mappings = {
                         ["n"] = {
                             ["h"] = fb_actions.goto_parent_dir,
@@ -116,6 +120,7 @@ return {
                             ["c"] = fb_actions.goto_cwd,
                             ["o"] = fb_actions.change_cwd,
                             ["e"] = require("telescope.actions").select_default,
+                            ["a"] = fb_actions.create,
                             ["<C-h>"] = fb_actions.toggle_hidden,
                             ["<C-n>"] = fb_actions.create,
                             ["<C-v>"] = require("telescope.actions").select_vertical,
