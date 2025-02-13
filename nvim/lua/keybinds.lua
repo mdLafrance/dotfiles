@@ -11,8 +11,8 @@ vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open termina
 -- Settings for telescope
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>f", telescope_builtin.find_files, {}) -- Open file finder
-vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {}) -- Open grep
-vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, {})   -- Show open bufs
+vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {})  -- Open grep
+vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, {})    -- Show open bufs
 
 -- Telescope file browser
 local function open_file_browser()
@@ -27,9 +27,10 @@ local function open_file_browser()
         respect_gitignore = false,
         hidden = false,
         grouped = true,
-        previewer = false,
+        previewer = true,
         initial_mode = "normal",
         layout_config = { height = 40 },
+        prompt_title = ""
     })
 end
 
