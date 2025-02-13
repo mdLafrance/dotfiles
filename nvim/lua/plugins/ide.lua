@@ -27,8 +27,7 @@ return {
         lazy = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-        }
-        ,
+        },
         config = function()
             require("nvim-tree").setup({
                 update_cwd = true,
@@ -54,56 +53,83 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+        config = function(_, opts)
+            print("Opts?", vim.inspect(opts))
+            local fb_actions = require("telescope").extensions.file_browser.actions
 
-    -- Additional telescope functionality
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-        config = function()
-            require("telescope").setup({
-                defaults = {
-                    file_ignore_patterns = { ".git", "node_modules", ".cache" },
+            opts.defaults = {
+                wrap_results = true,
+                layout_strategy = "horizontal",
+                layout_config = { prompt_position = "top" },
+                sorting_strategy = "ascending",
+                winblend = 0,
+                mappings = {
+                    n = {},
                 },
-                extensions = {
-                    ["ui-select"] = {
-                        require("telescope.themes").get_dropdown({}),
-                    },
-                },
-                pickers = {
-                    find_files = {
-                        find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
-                        layout_config = {
-                            height = 0.70,
-                        },
-                    },
-                    buffers = {
-                        show_all_buffers = true,
-                    },
-                    live_grep = {
-                        previewer = false,
-                        theme = "dropdown",
-                    },
-                    git_status = {
-                        git_icons = {
-                            added = " ",
-                            changed = " ",
-                            copied = " ",
-                            deleted = " ",
-                            renamed = "➡",
-                            unmerged = " ",
-                            untracked = " ",
-                        },
-                        previewer = false,
-                        theme = "dropdown",
-                    },
-                    colorscheme = {
-                        enable_preview = true,
-                    },
-                },
-            })
+                file_ignore_patterns = { ".git", "node_modules", ".cache" },
+            }
 
+            opts.pickers = {
+                find_files = {
+                    find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+                    layout_config = {
+                        height = 0.70,
+                    },
+                },
+                buffers = {
+                    show_all_buffers = true,
+                },
+                live_grep = {
+                    previewer = false,
+                    theme = "dropdown",
+                },
+                git_status = {
+                    git_icons = {
+                        added = " ",
+                        changed = " ",
+                        copied = " ",
+                        deleted = " ",
+                        renamed = "➡",
+                        unmerged = " ",
+                        untracked = " ",
+                    },
+                    previewer = false,
+                    theme = "dropdown",
+                },
+                colorscheme = {
+                    enable_preview = true,
+                },
+            }
+
+            opts.extensions = {
+                ["ui-select"] = {
+                    require("telescope.themes").get_dropdown({}),
+                },
+                file_browser = {
+                    theme = "dropdown",
+                    hijack_netrw = true,
+                    mappings = {
+                        ["n"] = {
+                            ["h"] = fb_actions.goto_parent_dir,
+                            ["l"] = require("telescope.actions").select_default,
+                            ["c"] = fb_actions.goto_cwd,
+                            ["o"] = fb_actions.change_cwd,
+                            ["e"] = require("telescope.actions").select_default,
+                            ["<C-h>"] = fb_actions.toggle_hidden,
+                            ["<C-n>"] = fb_actions.create,
+                            ["<C-v>"] = require("telescope.actions").select_vertical,
+                            ["<C-s>"] = require("telescope.actions").select_horizontal,
+                            ["<C-t>"] = require("telescope.actions").select_tab
+                        }
+                    }
+
+                }
+            }
+
+            require("telescope").setup(opts)
             require("telescope").load_extension("ui-select")
+            require("telescope").load_extension("file_browser")
         end,
     },
 

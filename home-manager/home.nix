@@ -5,6 +5,9 @@ let
   wrapped_spotify = pkgs.writeShellScriptBin "spotify" ''
     exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
     '';
+  wrapped_chrome = pkgs.writeShellScriptBin "google-chrome" ''
+    exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
+    '';
 in
 {
   home = {
@@ -27,6 +30,7 @@ in
 
   home.packages = with pkgs;
     [        
+      code-cursor
       wayland-utils
       libxkbcommon
       glfw-wayland
@@ -53,7 +57,7 @@ in
       python310
       nodejs_22
       nodePackages.typescript
-      google-chrome
+      wrapped_chrome
       starship
       waybar
       go
