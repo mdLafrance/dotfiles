@@ -1,6 +1,9 @@
--- Settings for nvimtree
-vim.g.nvim_tree_respect_buf_cwd = 1
+-- Vim settings
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
+-- Settings for nvimtree
+-- vim.g.nvim_tree_respect_buf_cwd = 1
 -- vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})      -- Open explorer
 -- vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {})    -- Close explorer
 -- vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Explorer collapse

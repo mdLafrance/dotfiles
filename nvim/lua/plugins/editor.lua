@@ -1,10 +1,10 @@
 -- Plugins related to editor config
 
 return {
-    {
-        "mdlafrance/tabby.nvim",
-        opts = {}
-    },
+    -- {
+    --     "mdlafrance/tabby.nvim",
+    --     opts = {}
+    -- },
 
     {
         "mdlafrance/flip.nvim",

@@ -7,12 +7,10 @@ return {
         priority = 1000,
         lazy = false,
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
             bigfile = { enabled = true },
             notifier = { enabled = true },
             quickfile = { enabled = true },
+            scroll = { enabled = false }
         },
         keys = {
             { "<leader>nl", function() Snacks.notifier.show_history() end, desc = "Notification History" },
@@ -181,6 +179,29 @@ return {
                 --     lualine_y = { "require'lsp-status'.status()" },
                 --     lualine_z = { 'location' }
                 -- },
+            })
+        end
+    },
+
+    -- Bufferline - better tabline formatting
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require("bufferline").setup({
+                options = {
+                    mode = "tabs",
+                    diagnostics = "nvim_lsp",
+                    color_icons = true,
+                    always_show_bufferline = false,
+                    auto_toggle_bufferline = true,
+                    get_element_icon = function(element)
+                        local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype,
+                            { default = false })
+                        return icon, hl
+                    end
+                }
             })
         end
     },
