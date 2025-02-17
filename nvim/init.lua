@@ -24,6 +24,7 @@ require("lazy").setup("plugins")
 -- Custom vim keybinds and config
 require("vim")
 require("keybinds")
+require("helpers")
 
 -- Set last used color using last-color
 local theme = require("last-color").recall() or "catppuccin"

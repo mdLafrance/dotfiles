@@ -137,10 +137,10 @@ if command_exists kitty; then
     link_config "Kitty" "${HOME}/.config/kitty/kitty.conf" "${PWD}/kitty/kitty.conf"
 fi
 
-### hyprland
-if command_exists Hyprland; then
-    link_config "Hyprland" "${HOME}/.config/hypr/hyprland.conf" "${PWD}/hyprland/hyprland.conf"
-fi
+# ### hyprland
+# if command_exists Hyprland; then
+#     link_config "Hyprland" "${HOME}/.config/hypr/hyprland.conf" "${PWD}/hyprland/hyprland.conf"
+# fi
 
 ### waybar
 if command_exists waybar; then
