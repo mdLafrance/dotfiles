@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
   wrapped_spotify = pkgs.writeShellScriptBin "spotify" ''
     exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
     '';
   wrapped_chrome = pkgs.writeShellScriptBin "google-chrome" ''
-    exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
+    exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --force-device-scale-factor=1 --disable-features=WaylandFractionalScaleV1
     '';
 in
 {
@@ -26,90 +26,55 @@ in
     OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
     PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
     LD_LIBRARY_PATH = "/run/current-system/sw/lib";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
   };
 
   home.packages = with pkgs;
     [        
-      code-cursor
-      wayland-utils
-      libxkbcommon
-      glfw-wayland
-      egl-wayland
-      zenity
-      zig_0_12
       unstable.neovim
-      gitlab-runner
-      google-cloud-sdk
-      terraform-ls
-      atk
-      cairo
-      librsvg
-      libsoup_3
-      sqlite
-      glib 
-      gtk3 
-      libsoup
-      webkitgtk_4_1
-      wineWowPackages.stable
-      winetricks
       swww
-      zsh
-      python310
-      nodejs_22
-      nodePackages.typescript
       wrapped_chrome
+      ripgrep
+      lazygit
       starship
       waybar
-      go
-      mold
-      clang-tools
-      clang
-      llvmPackages.libcxxStdenv
-      cmake
-      gnumake
-      ninja
-      ripgrep
-      lua
-      cargo
-      lazygit
       rofi-wayland
-      terraform
-      (unstable.obsidian.override { commandLineArgs = [ "--disable-gpu" ]; })
-      chromium
       neofetch
-      discord
-      wrapped_spotify
       pavucontrol
       pamixer
-      awscli2
-      rustc
+      (unstable.obsidian.override { commandLineArgs = [ "--disable-gpu --no-sandbox --ozone-platform=wayland --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations" ]; })
+      go
+      python310
+      cargo
       rustfmt
       rust-analyzer
-      unityhub
-      glfw-wayland
+      btop
+      lua
       stylua
-      wezterm
-      cmake-format
-      pipx
-      yarn
-      libGLU
-      glxinfo
-      apitrace
-      egl-wayland
-      libglvnd
-      mesa
-      libGL
-      vulkan-headers
-      vulkan-loader
-      vulkan-validation-layers
-      vulkan-tools
-      shaderc
-      gdb
-      deno
-      flameshot
-      go-task
-      openssl
+      gcc
       pkg-config
+      nodejs
+      deno
+      nodePackages.typescript
+      zsh
+      wrapped_spotify
+      pipx
+      code-cursor
+      wlsunset
+      # terraform-ls
+      # zig_0_12
+      # mold
+      # terraform
+      # chromium
+      # discord
+      # awscli2
+      # unityhub
+      # yarn
+      # go-task
+      # openssl
     ];
 
   programs.zsh = {
@@ -158,9 +123,9 @@ in
       source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/waybar;
     };
 
-    # Hyprland config
-    ".config/hypr/hyprland.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/hyprland/hyprland.conf;
-    };
+    # # Hyprland config
+    # ".config/hypr/hyprland.conf" = {
+    #   source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/hyprland/hyprland.conf;
+    # };
   };
 }
