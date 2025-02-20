@@ -64,6 +64,7 @@ in
       pipx
       code-cursor
       wlsunset
+      nodePackages.expo-cli
       # terraform-ls
       # zig_0_12
       # mold
