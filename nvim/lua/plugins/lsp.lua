@@ -22,7 +22,8 @@ return {
     {
         "Fildo7525/pretty_hover",
         event = "LspAttach",
-        opts = {}
+        opts = {},
+        tag = "v2.0.1"
     },
 
     -- LSP integration
@@ -51,10 +52,10 @@ return {
                     "dockerls",
                     "docker_compose_language_service",
                     "gopls",
-                    "jdtls",                -- java
-                    "marksman",             -- markdown
+                    "jdtls",    -- java
+                    "marksman", -- markdown
                     "powershell_es",
-                    "pyright",              -- python
+                    "pyright",  -- python
                     "rust_analyzer",
                     "ts_ls",
                     "tailwindcss",
@@ -96,7 +97,8 @@ return {
             })
             lspconfig.cssls.setup({
                 capabilities = capabilities,
-                filetypes = { "css", "scss", "less", "typescript", "typescriptreact", "typescript.tsx" },
+                -- filetypes = { "css", "scss", "less", "typescript", "typescriptreact", "typescript.tsx" },
+                filetypes = { "css", "scss", "less" },
             })
             lspconfig.css_variables.setup({
                 capabilities = capabilities,
@@ -140,6 +142,15 @@ return {
                         },
                     },
                 },
+                settings = {
+                    typescript = {
+                        format = {
+                            indentSize = 2,
+                            tabSize = 2,
+                            convertTabsToSpaces = true
+                        }
+                    }
+                }
             })
             lspconfig.tailwindcss.setup({
                 capabilities = capabilities,

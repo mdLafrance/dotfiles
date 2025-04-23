@@ -140,8 +140,11 @@ return {
                 formatters_by_ft = {
                     lua = { "stylua" },
                     python = { "black" },
-                    javascript = { { "prettierd", "prettier" } },
                     cc = { "astyle" },
+                    typescript = { "prettierd", "prettier" },
+                    typescriptreact = { "prettier" },
+                    javascript = { "prettier" },
+                    javascriptreact = { "prettier" },
                     ["_"] = { "trim_whitespace" },
                 },
                 format_on_save = {
@@ -149,14 +152,13 @@ return {
                     timeout_ms = 500,
                     lsp_fallback = false,
                 },
+                formatters = {
+                    prettier = {
+                        command = "prettier",
+                        prepend_args = { "--tab-width", "2", "--use-tabs", "false" }
+                    }
+                }
             })
-
-            -- vim.api.nvim_create_autocmd("BufWritePre", {
-            --     pattern = "*",
-            --     callback = function(args)
-            --         require("conform").format({ bufnr = args.buf })
-            --     end,
-            -- })
         end,
     },
 

@@ -3,10 +3,11 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Settings for nvimtree
--- vim.g.nvim_tree_respect_buf_cwd = 1
--- vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})      -- Open explorer
--- vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {})    -- Close explorer
--- vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Explorer collapse
+vim.g.nvim_tree_auto_open = 0
+vim.g.nvim_tree_respect_buf_cwd = 1
+vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<Cr>", {})      -- Open explorer
+vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {})    -- Close explorer
+vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Explorer collapse
 
 -- Settings for terminal
 vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open terminal
@@ -15,7 +16,6 @@ vim.keymap.set("n", "<leader>t", ":Lspsaga term_toggle<Cr>", {}) -- Open termina
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>f", telescope_builtin.find_files, {}) -- Open file finder
 vim.keymap.set("n", "<leader>g", telescope_builtin.live_grep, {})  -- Open grep
-vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, {})    -- Show open bufs
 
 -- Telescope file browser
 local function open_file_browser()
@@ -49,7 +49,7 @@ local function open_file_browser()
     })
 end
 
-vim.keymap.set("n", "<leader>e", open_file_browser, {})
+vim.keymap.set("n", "<leader>b", open_file_browser, {})
 
 -- Open trouble - warnings and errors pane
 vim.keymap.set("n", "<leader>w", ":TroubleToggle<CR>", {}) -- Open warnings
