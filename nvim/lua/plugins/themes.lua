@@ -68,4 +68,9 @@ return {
         end,
     },
     { "hardhackerlabs/theme-vim", name = "hardhacker" },
+    {
+        "webhooked/kanso.nvim",
+        lazy = false,
+        priority = 1000,
+    }
 }
