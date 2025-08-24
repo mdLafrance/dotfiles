@@ -73,7 +73,7 @@ local function custom_format()
   local filetype = vim.bo[bufnr].filetype
 
   -- Get all active clients for the current buffer
-  local clients = vim.lsp.buf_get_clients(bufnr)
+  local clients = vim.lsp.get_clients(bufnr)
 
   -- Filter out cssls for tsx files
   if filetype ~= "css" then
@@ -118,7 +118,7 @@ vim.keymap.set("n", "<leader>err", ":messages<CR>", {})
 -- 'gc' in visual select mode
 
 -- Open outliner
-vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {})
+vim.keymap.set("n", "<leader>o", ":Outline<CR>", {})
 
 -- LSP
 -- vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
@@ -145,6 +145,10 @@ end, {})
 -- Tabs
 vim.keymap.set("n", "<leader>[", ":tabprevious<CR>", {})
 vim.keymap.set("n", "<leader>]", ":tabnext<CR>", {})
+
+-- Extra binds for split keyboard
+vim.keymap.set("n", "<leader>0", ":tabprevious<CR>", {})
+vim.keymap.set("n", "<leader>-", ":tabnext<CR>", {})
 
 -- -- Tabby
 -- vim.keymap.set("n", "<leader>nt", ":TabbyNewTab<CR>", {})

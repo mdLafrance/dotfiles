@@ -10,19 +10,25 @@ config.font = wezterm.font 'JetBrains Mono'
 
 -- Padding
 config.window_padding = {
-    left = 10,
-    right = 10,
-    top = 10,
-    bottom = 10
+    left = 5,
+    right = 5,
+    top = 5,
+    bottom = 5
 }
 
+config.max_fps = 144
+
+config.macos_window_background_blur = 20
+
 -- Background opacity
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.88
 
 -- Tab management
 config.hide_tab_bar_if_only_one_tab = true
 
 -- Temporary fix to work on wayland
 config.enable_wayland = false
+
+
 
 return config
