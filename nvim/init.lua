@@ -61,18 +61,18 @@ vim.pack.add({
   'https://github.com/lukas-reineke/indent-blankline.nvim',        -- Adds indentation guides
   "https://github.com/goolord/alpha-nvim",                         -- Dashboard
   "https://github.com/folke/snacks.nvim",                          -- UI stuff
-  "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
-  "https://github.com/NickvanDyke/opencode.nvim",
+  "https://github.com/rachartier/tiny-inline-diagnostic.nvim",     -- Better formatting for error messages
+  -- "https://github.com/kndndrj/nvim-dbee",                          -- Postgres client
 
   -- LSP stuff
   "https://github.com/nvimdev/lspsaga.nvim",         -- Additional lsp commands
   "https://github.com/pmizio/typescript-tools.nvim", -- Better ts handling
   "https://github.com/rafamadriz/friendly-snippets", -- Snippets
   -- "https://github.com/L3MON4D3/LuaSnip",             -- Snippets
-  -- "https://github.com/windwp/nvim-ts-autotag",       -- Autoclose typescript tags [BROKEN]
-  "https://github.com/m4xshen/autoclose.nvim", -- Autoclose and open brackets and stuff
-  "https://github.com/stevearc/conform.nvim",  -- Formatting
-  "https://github.com/rust-lang/rust.vim",
+  "https://github.com/windwp/nvim-ts-autotag",       -- Autoclose typescript tags
+  "https://github.com/m4xshen/autoclose.nvim",       -- Autoclose and open brackets and stuff
+  "https://github.com/stevearc/conform.nvim",        -- Formatting
+  "https://github.com/rust-lang/rust.vim",           -- Better rust tooling
 
   -- THEME setup
   "https://github.com/raddari/last-color.nvim",
@@ -82,9 +82,22 @@ vim.pack.add({
   "https://github.com/oxfist/night-owl.nvim",
   "https://github.com/vague2k/vague.nvim",
   "https://github.com/mcauley-penney/techbase.nvim",
+  "https://github.com/ramojus/mellifluous.nvim",
+  "https://github.com/folke/tokyonight.nvim",
+  "https://github.com/xiyaowong/transparent.nvim", -- Transparency
+
 })
 
 --------------------- CORE PLUGINS ---------------------
+require("nvim-treesitter.configs").setup({
+  auto_install = true,
+  sync_install = false,
+  highlight = { enable = true, use_languagetree = true },
+  -- indent = { enable = true },
+  autotag = {
+    -- enable = true,
+  },
+})
 
 require("mason").setup({
   PATH = "append",
@@ -152,18 +165,18 @@ require("nvim-tree").setup({
   }
 })
 
-require('opencode').setup({
-})
-
-vim.keymap.set("n", '<leader>oa', function() require('opencode').ask() end)
-vim.keymap.set("v", '<leader>oa', function() require('opencode').ask('@selection: ') end)
-vim.keymap.set("n", '<leader>ot', function() require('opencode').toggle() end)
-vim.keymap.set("n", '<leader>on', function() require('opencode').command('session_new') end)
-vim.keymap.set("n", '<leader>oy', function() require('opencode').command('messages_copy') end)
-vim.keymap.set("n", '<S-C-u>', function() require('opencode').command('messages_half_page_up') end)
-vim.keymap.set("n", '<S-C-d>', function() require('opencode').command('messages_half_page_down') end)
-vim.keymap.set("n", '<leader>op', function() require('opencode').select_prompt() end)
-vim.keymap.set("n", '<leader>oe', function() require('opencode').prompt("Explain @cursor and its context") end)
+-- require('opencode').setup({
+-- })
+--
+-- vim.keymap.set("n", '<leader>oa', function() require('opencode').ask() end)
+-- vim.keymap.set("v", '<leader>oa', function() require('opencode').ask('@selection: ') end)
+-- vim.keymap.set("n", '<leader>ot', function() require('opencode').toggle() end)
+-- vim.keymap.set("n", '<leader>on', function() require('opencode').command('session_new') end)
+-- vim.keymap.set("n", '<leader>oy', function() require('opencode').command('messages_copy') end)
+-- vim.keymap.set("n", '<S-C-u>', function() require('opencode').command('messages_half_page_up') end)
+-- vim.keymap.set("n", '<S-C-d>', function() require('opencode').command('messages_half_page_down') end)
+-- vim.keymap.set("n", '<leader>op', function() require('opencode').select_prompt() end)
+-- vim.keymap.set("n", '<leader>oe', function() require('opencode').prompt("Explain @cursor and its context") end)
 
 --------------------- VISUAL PLUGINS ---------------------
 require("bufferline").setup({
@@ -188,6 +201,10 @@ require('tiny-inline-diagnostic').setup({
 })
 
 --------------------- THEMES ---------------------
+require("mellifluous").setup({
+  color_set = "tender",
+})
+
 -- Set last used color using last-color
 local theme = require("last-color").recall() or "catppuccin"
 vim.cmd(("colorscheme %s"):format(theme))
@@ -455,6 +472,41 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
   once = true, -- Only run once
   desc = "Lazy load blink.cmp on first buffer enter"
+})
+
+local autotag_loaded = false
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    -- Only load once
+    if autotag_loaded then return end
+
+    -- Skip for certain buffer types that don't need completion
+    local buftype = vim.bo.buftype
+    if buftype == 'terminal' or buftype == 'prompt' or buftype == 'nofile' then
+      return
+    end
+
+    vim.pack.add({
+      "https://github.com/Saghen/blink.cmp", -- Snippet engine
+    })
+
+
+    require("nvim-ts-autotag").setup({
+      filetypes = {
+        "html",
+        "xml",
+        "eruby",
+        "embedded_template",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+      },
+    })
+  end,
+  once = true, -- Only run once
+  desc = "Lazy load ts-autotag on first buffer enter"
 })
 
 require("autoclose").setup()
