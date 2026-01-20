@@ -84,6 +84,7 @@ vim.pack.add({
   "https://github.com/mcauley-penney/techbase.nvim",
   "https://github.com/ramojus/mellifluous.nvim",
   "https://github.com/folke/tokyonight.nvim",
+  "https://github.com/EdenEast/nightfox.nvim",
   "https://github.com/xiyaowong/transparent.nvim", -- Transparency
 
 })
@@ -331,7 +332,12 @@ vim.lsp.config.tailwindcss = {
         invalidVariant = "error",
         recommendedVariantOrder = "warning"
       },
-      validate = true
+      validate = true,
+      experimental = {
+        configFile = (function()
+          return '/Users/maximelafrance/work/tato/packages/tato-ui/src/globals.css' -- adjust path as needed
+        end)(),
+      },
     }
   },
   root_markers = {
