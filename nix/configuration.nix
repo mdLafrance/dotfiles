@@ -12,7 +12,11 @@
   '';
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [
     "nvidia-drm.fbdev=1"
@@ -63,10 +67,6 @@
 
   # Hardware
   hardware = {
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
@@ -81,6 +81,10 @@
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
     };
   };
 
