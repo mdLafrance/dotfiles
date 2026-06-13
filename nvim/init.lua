@@ -414,6 +414,27 @@ vim.lsp.config('rust_analyzer', {
 
 vim.lsp.enable('rust_analyzer')
 
+-- ELIXIR / PHOENIX
+vim.lsp.config('elixirls', {
+  cmd = { 'elixir-ls' },
+  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+  root_markers = { 'mix.exs', '.git' },
+  settings = {
+    elixirLS = {
+      -- Enable dialyzer for additional type checking (can be slow)
+      dialyzerEnabled = true,
+      -- Format on save using mix format
+      formatOnSave = false, -- We'll use conform.nvim for this
+      -- Fetch dependencies automatically
+      fetchDeps = false,
+      -- Suggest specs for functions
+      suggestSpecs = true,
+    },
+  },
+})
+
+vim.lsp.enable('elixirls')
+
 require("conform").setup({
   formatters_by_ft = {
     javascript = { "prettier" },
@@ -427,6 +448,9 @@ require("conform").setup({
     lua = { "lsp_format" },
     go = { "lsp_format" },
     python = { "lsp_format" },
+    elixir = { "mix" },
+    eelixir = { "mix" },
+    heex = { "mix" },
   },
   format_on_save = {
     timeout_ms = 500,
@@ -521,6 +545,13 @@ require("autoclose").setup()
 -- Tabs
 vim.keymap.set("n", "<leader>[", ":tabprevious<CR>", {})
 vim.keymap.set("n", "<leader>]", ":tabnext<CR>", {})
+vim.keymap.set("n", "<leader>mnt", function()
+  local buf = vim.api.nvim_get_current_buf()
+  local win = vim.api.nvim_get_current_win()
+  vim.cmd("tabnew")
+  vim.api.nvim_win_set_buf(0, buf)
+  vim.api.nvim_win_close(win, false)
+end, { desc = "Move buffer to new tab" })
 
 -- Extra binds for split keyboard
 vim.keymap.set("n", "<leader>0", ":tabprevious<CR>", {})
@@ -596,9 +627,9 @@ vim.keymap.set("n", "<leader>ee", ":NvimTreeClose<Cr>", {})    -- Close explorer
 vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<Cr>", {}) -- Explorer collapse
 
 --------------------- MISC ---------------------
--- Set 2 space tabstop for react
+-- Set 2 space tabstop for react, elixir, etc.
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "javascript", "typescript", "typescriptreact", "lua", "json", "yaml" },
+  pattern = { "javascript", "typescript", "typescriptreact", "lua", "json", "yaml", "elixir", "eelixir", "heex", "surface" },
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
@@ -632,33 +663,33 @@ local arasaka_logo = {
 
 vim.api.nvim_create_user_command("MLOpenFileBrowser", open_file_browser, {});
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  callback = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
-
-    -- Set header
-    dashboard.section.header.val = arasaka_logo
-
-    -- Set menu
-    dashboard.section.buttons.val = {
-      dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("f", "   Find file", ":Telescope find_files<CR>"),
-      dashboard.button("b", "󰉋   Browse files", ":MLOpenFileBrowser<CR>"),
-      dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
-      dashboard.button("s", "   Settings", ":cd ~/dotfiles<CR> | :e ./nvim/init.lua<CR>"),
-      dashboard.button("q", "󰗼   Quit NVIM", ":qa<CR>"),
-    }
-
-    alpha.setup(dashboard.opts)
-  end,
-})
+-- vim.api.nvim_create_autocmd('VimEnter', {
+--   callback = function()
+--     local alpha = require("alpha")
+--     local dashboard = require("alpha.themes.dashboard")
+--
+--     -- Set header
+--     dashboard.section.header.val = arasaka_logo
+--
+--     -- Set menu
+--     dashboard.section.buttons.val = {
+--       dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
+--       dashboard.button("f", "   Find file", ":Telescope find_files<CR>"),
+--       dashboard.button("b", "󰉋   Browse files", ":MLOpenFileBrowser<CR>"),
+--       dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
+--       dashboard.button("s", "   Settings", ":cd ~/dotfiles<CR> | :e ./nvim/init.lua<CR>"),
+--       dashboard.button("q", "󰗼   Quit NVIM", ":qa<CR>"),
+--     }
+--
+--     alpha.setup(dashboard.opts)
+--   end,
+-- })
 
 -- Launch alpha if no paths
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.argc() == 0 then
-      require("alpha").start()
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     if vim.fn.argc() == 0 then
+--       require("alpha").start()
+--     end
+--   end,
+-- })
