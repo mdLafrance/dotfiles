@@ -124,9 +124,10 @@ in
       source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/waybar;
     };
 
-    # # Hyprland config
-    # ".config/hypr/hyprland.conf" = {
-    #   source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/hyprland/hyprland.conf;
-    # };
+    # Hyprland config
+    ".config/hypr/hyprland.conf" = {
+      force = true;
+      source = config.lib.file.mkOutOfStoreSymlink /home/mdlafrance/dotfiles/hyprland/hyprland.conf;
+    };
   };
 }
