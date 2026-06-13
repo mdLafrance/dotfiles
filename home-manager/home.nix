@@ -2,6 +2,9 @@
 
 let
   unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
+  neovim-nightly-overlay = import (builtins.fetchTarball {
+    url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+  });
   wrapped_spotify = pkgs.writeShellScriptBin "spotify" ''
     exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
     '';
@@ -20,6 +23,8 @@ in
     allowUnfree = true;
   };
 
+  nixpkgs.overlays = [ neovim-nightly-overlay.overlays.default ];
+
   home.sessionVariables = {
     OPENSSL_DIR = "${pkgs.openssl.dev}";
     OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
@@ -34,7 +39,7 @@ in
 
   home.packages = with pkgs;
     [        
-      unstable.neovim
+      neovim-nightly
       swww
       wrapped_chrome
       ripgrep
