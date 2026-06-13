@@ -44,7 +44,8 @@ vim.diagnostic.config({
 vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",                -- Icons for pretty much everything
   'https://github.com/nvim-telescope/telescope.nvim',              -- The picker
-  'https://github.com/nvim-treesitter/nvim-treesitter',            -- Auto highlighting
+  -- 'https://github.com/nvim-treesitter/nvim-treesitter',            -- Auto highlighting
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
   "https://github.com/nvim-lualine/lualine.nvim",                  -- The bottom line
   'https://github.com/williamboman/mason.nvim',                    -- LSP install manager
   'https://github.com/nvim-tree/nvim-tree.lua',                    -- File explorer
@@ -90,15 +91,16 @@ vim.pack.add({
 })
 
 --------------------- CORE PLUGINS ---------------------
-require("nvim-treesitter.configs").setup({
-  auto_install = true,
-  sync_install = false,
-  highlight = { enable = true, use_languagetree = true },
-  -- indent = { enable = true },
-  autotag = {
-    -- enable = true,
-  },
-})
+-- Borked on nix
+-- require("nvim-treesitter.configs").setup({
+--   auto_install = true,
+--   sync_install = false,
+--   highlight = { enable = true, use_languagetree = true },
+--   -- indent = { enable = true },
+--   autotag = {
+--     -- enable = true,
+--   },
+-- })
 
 require("mason").setup({
   PATH = "append",
@@ -479,6 +481,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end
 
     vim.pack.add({
+      "https://github.com/Saghen/blink.lib", -- Snippet engine
       "https://github.com/Saghen/blink.cmp", -- Snippet engine
     })
 
@@ -518,6 +521,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end
 
     vim.pack.add({
+      "https://github.com/Saghen/blink.lib", -- Snippet engine
       "https://github.com/Saghen/blink.cmp", -- Snippet engine
     })
 
