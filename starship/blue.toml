@@ -32,6 +32,8 @@ Mint = "󰣭 "
 NixOS = " "
 EndeavourOS = "󰣇 "
 Ubuntu = " "
+Macos = " "
+
 
 [username]
 show_always = true

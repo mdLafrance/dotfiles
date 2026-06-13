@@ -20,6 +20,7 @@
 
 .modules-center {
     background: @inherit;
+	color: #fdf6e3;
 }
 
 #custom-right-arrow-dark-transparent,
