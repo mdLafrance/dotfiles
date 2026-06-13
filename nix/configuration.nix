@@ -71,9 +71,9 @@
       modesetting.enable = true;
       powerManagement.enable = true;
       forceFullCompositionPipeline = true;
-      open = false;
+      open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
     pulseaudio = {
       enable = false;
@@ -132,8 +132,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   fonts.packages = with pkgs; [
-    nerdfonts
-    jetbrains-mono
+    nerd-fonts.jetbrains-mono
   ];
 
   programs.ssh = {
@@ -142,4 +141,12 @@
   };
 
   system.stateVersion = "24.05";
+
+  # Gaming stuff
+  programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+  };
+
+  programs.gamescope.enable = true;
 }

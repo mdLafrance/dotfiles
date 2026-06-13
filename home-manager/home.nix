@@ -5,9 +5,9 @@ let
   wrapped_spotify = pkgs.writeShellScriptBin "spotify" ''
     exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
     '';
-  wrapped_chrome = pkgs.writeShellScriptBin "google-chrome" ''
-    exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --force-device-scale-factor=1 --disable-features=WaylandFractionalScaleV1
-    '';
+  # wrapped_chrome = pkgs.writeShellScriptBin "google-chrome" ''
+  #   exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --force-device-scale-factor=1 --disable-features=WaylandFractionalScaleV1
+  #   '';
 in
 {
   home = {
@@ -36,7 +36,7 @@ in
     [        
       unstable.neovim
       swww
-      wrapped_chrome
+      chrome
       ripgrep
       lazygit
       starship
