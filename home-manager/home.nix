@@ -66,6 +66,7 @@ in
       google-chrome
       tidal-hifi
       mangohud # Performance overlay
+      lazygit
       # terraform-ls
       # zig_0_12
       # mold
