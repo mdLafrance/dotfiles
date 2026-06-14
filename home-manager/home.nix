@@ -36,7 +36,6 @@ in
     [        
       unstable.neovim
       swww
-      chrome
       ripgrep
       lazygit
       starship
@@ -64,7 +63,9 @@ in
       pipx
       code-cursor
       wlsunset
-      nodePackages.expo-cli
+      google-chrome
+      tidal-hifi
+      mangohud # Performance overlay
       # terraform-ls
       # zig_0_12
       # mold

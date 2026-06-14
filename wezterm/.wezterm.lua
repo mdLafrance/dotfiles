@@ -21,14 +21,12 @@ config.max_fps = 144
 config.macos_window_background_blur = 20
 
 -- Background opacity
-config.window_background_opacity = 0.88
+config.window_background_opacity = 0.95
 
 -- Tab management
 config.hide_tab_bar_if_only_one_tab = true
 
 -- Temporary fix to work on wayland
 config.enable_wayland = false
-
-
 
 return config

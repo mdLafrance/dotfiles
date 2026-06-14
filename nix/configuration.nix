@@ -14,7 +14,7 @@
   # Bootloader.
   boot.loader.systemd-boot = {
     enable = true;
-    configurationLimit = 10;
+    configurationLimit = 5;
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -40,13 +40,13 @@
       enable = true;
       wayland = true;
     };
-    desktopManager.gnome.enable = true;
+    # desktopManager.gnome.enable = true;
   };
 
   xdg.portal.enable = true;
 
   services.displayManager.autoLogin = {
-    enable = false;
+    enable = true;
     user = "mdlafrance";
   };
 
