@@ -86,10 +86,10 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    envExtra = ''
-      source ~/dotfiles/zsh/.aliases;
+    initContent = ''
+      source ~/dotfiles/zsh/.aliases
+
       export LD_LIBRARY_PATH=${pkgs.wayland}/lib:${pkgs.egl-wayland}/lib:/run/opengl-driver/lib:${pkgs.libglvnd}/lib:/run/opengl-driver-32/lib:$LD_LIBRARY_PATH
-      eval $(starship init zsh);
     '';
 
     oh-my-zsh = {
