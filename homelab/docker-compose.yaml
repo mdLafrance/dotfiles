@@ -1,0 +1,15 @@
+services:
+  # Music client
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - "4533:4533"
+    environment:
+      ND_LOGLEVEL: info
+      ND_SCANSCHEDULE: 0
+      ND_SCANNER_WATCHERENABLED: "true"
+    volumes:
+      - ./navidrome-data:/data
+      - /home/max/data/music:/music:ro
+    restart: unless-stopped
