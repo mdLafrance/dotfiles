@@ -48,6 +48,10 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "max";
+  };
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -110,6 +114,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+      nvidia-container-toolkit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -154,7 +159,15 @@
 
   # Docker
   virtualisation.docker.enable = true;
+  virtualisation.containers.containersConf.settings = {
+    engine = {
+      cdi_spec_dirs = [ "/etc/cdi" ];
+    };
+  };
 
   # Tailscale
   services.tailscale.enable = true;
+
+  # USB shenanigans
+  services.gvfs.enable = true;
 }

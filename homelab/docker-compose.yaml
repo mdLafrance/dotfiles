@@ -13,3 +13,136 @@ services:
       - ./navidrome-data:/data
       - /home/max/data/music:/music:ro
     restart: unless-stopped
+
+  # Movies
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./jellyfin-data/config:/config
+      - ./jellyfin-data/cache:/cache
+      - ~/data/movies:/media/movies
+      - ~/data/tv:/media/tv
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    restart: unless-stopped
+
+
+  # Torrenting
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/Toronto
+      - WEBUI_PORT=8080
+    volumes:
+      - ./qbittorrent-data/config:/config
+      - ~/data:/data          # was ~/data/downloads:/downloads
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  # Dashboard
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - "3000:3000"
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "homelab:3000,100.x.y.z:3000"
+      PUID: 1000
+      PGID: 100
+    volumes:
+      - ./homepage-data/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+    # Indexer manager
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/Toronto
+    volumes:
+      - ./prowlarr-data/config:/config
+    ports:
+      - "9696:9696"
+    restart: unless-stopped
+
+  # Movies automation
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/Toronto
+    volumes:
+      - ./radarr-data/config:/config
+      - ~/data:/data
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+
+  # Music automation
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/Toronto
+    volumes:
+      - ./lidarr-data/config:/config
+      - ~/data:/data
+    ports:
+      - "8686:8686"
+    restart: unless-stopped
+
+  # Request UI (movies/TV)
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - TZ=America/Toronto
+    volumes:
+      - ./jellyseerr-data/config:/app/config
+    ports:
+      - "5055:5055"
+    restart: unless-stopped
+
+  # LLM
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    volumes:
+      - ./ollama-data:/root/.ollama
+    devices:
+      - nvidia.com/gpu=all
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    volumes:
+      - ./open-webui-data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    ports:
+      - "3001:8080"
+    restart: unless-stopped

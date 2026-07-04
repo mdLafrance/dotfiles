@@ -3,3 +3,10 @@ qutebrowser/autoconfig.yml
 QtProject.conf
 startup.log
 homelab/navidrome-data
+homelab/homepage-data
+homelab/jellyfin-data
+homelab/jellyseerr-data
+homelab/lidarr-data
+homelab/prowlarr-data
+homelab/qbittorrent-data
+homelab/radarr-data
