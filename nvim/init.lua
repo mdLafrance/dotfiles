@@ -269,6 +269,46 @@ vim.lsp.config.eslint = {
 
 vim.lsp.enable('eslint')
 
+-- OXLINT
+-- Work repos lint with oxc instead of eslint. Only attaches where there's an
+-- .oxlintrc.json, so personal projects are untouched. oxlint isn't installed
+-- globally, so resolve it from the project's own node_modules at start time.
+vim.lsp.config.oxlint = {
+  cmd = function(dispatchers, config)
+    local cmd = 'oxlint'
+    local root = (config or {}).root_dir
+    if root then
+      local local_cmd = vim.fs.joinpath(root, 'node_modules/.bin', cmd)
+      if vim.fn.executable(local_cmd) == 1 then
+        cmd = local_cmd
+      end
+    end
+    return vim.lsp.rpc.start({ cmd, '--lsp' }, dispatchers)
+  end,
+  filetypes = {
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'vue',
+  },
+  -- Not calling on_dir leaves the client unstarted, which is what we want in
+  -- prettier/eslint projects. root_markers can't express that: with no match
+  -- it still starts oxlint against a nil root and fails to spawn.
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    if fname == '' then
+      return
+    end
+    local found = vim.fs.find({ '.oxlintrc.json' }, { path = fname, upward = true })[1]
+    if found then
+      on_dir(vim.fs.dirname(found))
+    end
+  end,
+}
+
+vim.lsp.enable('oxlint')
+
 -- TAILWIND CSS
 vim.lsp.config.tailwindcss = {
   cmd = { 'tailwindcss-language-server', '--stdio' },
@@ -437,13 +477,23 @@ vim.lsp.config('elixirls', {
 
 vim.lsp.enable('elixirls')
 
+-- Picks oxfmt when the buffer's project ships it, prettier otherwise.
+-- oxfmt resolves out of the project's own node_modules, so its absence is
+-- what identifies a prettier project.
+local function js_formatter(bufnr)
+  if require("conform").get_formatter_info("oxfmt", bufnr).available then
+    return { "oxfmt" }
+  end
+  return { "prettier" }
+end
+
 require("conform").setup({
   formatters_by_ft = {
-    javascript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescript = { "prettier" },
-    typescriptreact = { "prettier" },
-    json = { "prettier" },
+    javascript = js_formatter,
+    javascriptreact = js_formatter,
+    typescript = js_formatter,
+    typescriptreact = js_formatter,
+    json = js_formatter,
     html = { "prettier" },
     css = { "prettier" },
     markdown = { "prettier" },
