@@ -44,8 +44,8 @@ vim.diagnostic.config({
 vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",                -- Icons for pretty much everything
   'https://github.com/nvim-telescope/telescope.nvim',              -- The picker
-  -- 'https://github.com/nvim-treesitter/nvim-treesitter',            -- Auto highlighting
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
+  -- master branch is frozen/archived upstream; main is the actively maintained rewrite
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   "https://github.com/nvim-lualine/lualine.nvim",                  -- The bottom line
   'https://github.com/williamboman/mason.nvim',                    -- LSP install manager
   'https://github.com/nvim-tree/nvim-tree.lua',                    -- File explorer
@@ -91,16 +91,18 @@ vim.pack.add({
 })
 
 --------------------- CORE PLUGINS ---------------------
--- Borked on nix
--- require("nvim-treesitter.configs").setup({
---   auto_install = true,
---   sync_install = false,
---   highlight = { enable = true, use_languagetree = true },
---   -- indent = { enable = true },
---   autotag = {
---     -- enable = true,
---   },
--- })
+-- nvim-treesitter (main branch) only manages parsers now; core Neovim owns
+-- highlighting, so we start it ourselves via vim.treesitter.start().
+require("nvim-treesitter").install({
+  "bash", "css", "elixir", "heex", "html", "javascript", "json", "lua",
+  "markdown", "python", "rust", "scss", "tsx", "typescript", "yaml",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
 
 require("mason").setup({
   PATH = "append",
@@ -666,11 +668,13 @@ vim.keymap.set("n", "<leader>1", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>2", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>3", "<cmd>Lspsaga code_action<CR>", {})
 vim.keymap.set("n", "<leader>l", vim.lsp.buf.format, {})
-vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gtt", "<cmd>Lspsaga goto_type_definition<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fa", "<cmd>Lspsaga finder<CR>", { noremap = true, silent = true })
+-- Lspsaga's peek_definition/peek_type_definition/goto_type_definition/finder all call a
+-- private Neovim LSP API (vim.lsp.util._get_line_byte_from_position) that was removed from
+-- Neovim nightly, with no fix upstream. Using Telescope/core LSP instead, which don't depend on it.
+vim.keymap.set("n", "<leader>pd", telescope_builtin.lsp_definitions, {})
+vim.keymap.set("n", "<leader>pt", telescope_builtin.lsp_type_definitions, {})
+vim.keymap.set("n", "<leader>gtt", vim.lsp.buf.type_definition, {})
+vim.keymap.set("n", "<leader>fa", telescope_builtin.lsp_references, {})
 vim.api.nvim_set_keymap("n", "<leader>lspi", "<cmd>LspInfo<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>lspr", "<cmd>LspRestart<CR>", { noremap = true, silent = true })
 
