@@ -10,3 +10,5 @@ homelab/lidarr-data
 homelab/prowlarr-data
 homelab/qbittorrent-data
 homelab/radarr-data
+homelab/ollama-data
+homelab/open-webui-data

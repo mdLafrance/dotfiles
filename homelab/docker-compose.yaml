@@ -34,6 +34,18 @@ services:
     #           capabilities: [gpu]
     restart: unless-stopped
 
+  relayd:
+    build:
+      context: /home/max/stuff/hibysync 
+      dockerfile: Dockerfile
+    container_name: relayd
+    restart: unless-stopped
+    ports:
+      - "8421:8421"
+    volumes:
+      - /home/max/data/music:/music:ro
+      - /tmp/relaycache:/cache
+    command: ["-library", "/music", "-cache-dir", "/cache", "-log-level", "info"]
 
   # Torrenting
   qbittorrent:

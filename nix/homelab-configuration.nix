@@ -49,7 +49,7 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.autoLogin = {
-    enable = true;
+    enable = false;
     user = "max";
   };
   services.desktopManager.plasma6.enable = true;
@@ -100,6 +100,9 @@
       neovim
       lazygit
       zsh 
+      go
+      picard
+      ffmpeg
     ];
   };
 
@@ -134,7 +137,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -171,4 +174,10 @@
 
   # USB shenanigans
   services.gvfs.enable = true;
+
+  # RDP
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "startplasma-x11";
+  };
 }
