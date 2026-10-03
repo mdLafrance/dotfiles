@@ -1,0 +1,6 @@
+window-decoration = true
+macos-titlebar-style = transparent
+background-opacity = 0.96
+theme = ayu
+keybind = cmd+enter=unbind
+mouse-scroll-multiplier = precision:2,discrete:1
